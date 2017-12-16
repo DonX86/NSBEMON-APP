@@ -9,7 +9,8 @@
     "preinstall": "node tools/nodeVersionCheck.js",
     "start-message": "babel-node tools/startMessage.js",
     "prestart": "npm run start-message",
-    "start": "concurrently -k -r -s first \"npm run test:watch\" \"npm run open:src\" \"npm run lint:watch\"",
+    "start": "concurrently -k -r -s first \"npm run backend:express-graphql\"",
+    "backend:express-graphql": "babel-node backend/graphql/scripts/expressServer.js",
     "open:src": "babel-node tools/srcServer.js",
     "open:dist": "babel-node tools/distServer.js",
     "lint": "esw webpack.config.* src tools --color",
@@ -29,14 +30,19 @@
   "author": "Alejandro Alvarado",
   "license": "MIT",
   "dependencies": {
+    "express": "4.16.2",
+    "express-graphql": "0.6.11",
+    "graphql": "0.11.7",
     "object-assign": "4.1.0",
+    "oracledb": "2.0.15",
     "react": "16.0.0",
     "react-dom": "16.0.0",
     "react-redux": "5.0.5",
     "react-router-dom": "4.2.2",
-    "react-router-redux": "5.0.0-alpha.6",
+    "react-router-redux": "4.0.8",
     "redux": "3.6.0",
-    "redux-thunk": "2.1.0"
+    "redux-thunk": "2.1.0",
+    "uuid": "3.1.0"
   },
   "devDependencies": {
     "autoprefixer": "7.1.4",
