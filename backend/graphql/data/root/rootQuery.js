@@ -16,11 +16,6 @@ export const RootQuery = new GraphQLObjectType({
   fields: {
     viewer: {
       type: NodeInterface,
-      args: {
-        id: {
-          type: new GraphQLNonNull(GraphQLID),
-        }
-      },
       resolve(source, args, context) {
         return generateUser(false, generateTeam());
       },

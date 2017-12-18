@@ -9,7 +9,7 @@
     "preinstall": "node tools/nodeVersionCheck.js",
     "start-message": "babel-node tools/startMessage.js",
     "prestart": "npm run start-message",
-    "start": "concurrently -k -r -s first \"npm run backend:express-graphql\"",
+    "start": "concurrently -k -r -s first \"npm run backend:express-graphql\" \"npm run open:src\"",
     "backend:express-graphql": "babel-node backend/graphql/scripts/expressServer.js",
     "open:src": "babel-node tools/srcServer.js",
     "open:dist": "babel-node tools/distServer.js",
@@ -33,6 +33,7 @@
     "express": "4.16.2",
     "express-graphql": "0.6.11",
     "graphql": "0.11.7",
+    "js-cookie": "2.2.0",
     "object-assign": "4.1.0",
     "oracledb": "2.0.15",
     "react": "16.0.0",
@@ -42,6 +43,7 @@
     "react-router-redux": "4.0.8",
     "redux": "3.6.0",
     "redux-thunk": "2.1.0",
+    "semantic-ui": "2.2.13",
     "uuid": "3.1.0"
   },
   "devDependencies": {
