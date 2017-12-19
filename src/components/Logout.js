@@ -1,5 +1,9 @@
 import React from 'react';
+import { Redirect } from 'react-router-dom';
 
-export const Logout = () => (
-  <h1> Logout component </h1>
-);
+import { authenticationClient } from '../Authentication.js';
+
+export const Logout = () => {
+  authenticationClient.logout();
+  return (<Redirect to="/Login" />);
+}

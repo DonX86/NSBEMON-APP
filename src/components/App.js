@@ -9,10 +9,6 @@ import { Profile } from './Profile';
 import { Login } from './Login';
 import { Logout } from './Logout';
 
-import * as authenticate from '../authenticate.js';
-
-let appRoutes = authenticate.isLoggedIn() ? ['Leader', 'Teammates', 'Profile', 'Logout'] : ['Login'];
-
 const NoMatch = ({ location }) => (
   <div className='ui inverted red raised very padded text container segment'>
     <strong>Error!</strong> No route found matching:
@@ -24,7 +20,7 @@ const NoMatch = ({ location }) => (
 
 export const App = () => (
   <div>
-    <AppMenu items={appRoutes} />
+    <AppMenu />
     <Switch>
       <PrivateRoute exact path='/Leader' component={Leader} />
       <PrivateRoute path='/Teammates' component={Members} />
