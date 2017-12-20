@@ -1,0 +1,36 @@
+service: nsbemonService
+
+provider:
+  name: aws
+  runtime: nodejs6.10
+  stage: ${opt:stage, 'dev'}
+  region: us-west-1
+  profile: nsbemon
+  versionFunctions: false
+
+functions:
+  authenticate:
+    handler: lambdas/authenticate.handler
+    name: ${self:provider.stage}-authenticate
+    description: An authentication function used to verify users
+
+  login:
+    handler: lambdas/login.handler
+    name: ${self:provider.stage}-login
+    description: A login endpoint used to provide tokens to the user
+    events:
+      - http:
+          path: login
+          method: post
+          cors: true
+
+  graphql:
+    handler: lambdas/graphql.handler
+    name: ${self:provider.stage}-graphql
+    description: The main endpoint for the application data using graphql
+    events:
+      - http:
+          path: graphql
+          method: post
+          cors: true
+          authorizer: authenticate
