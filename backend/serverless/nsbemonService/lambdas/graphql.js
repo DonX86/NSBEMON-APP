@@ -1,6 +1,10 @@
 'use strict';
 
 module.exports.handler = (event, context, callback) => {
+
+  // The authenticated user
+  const user = JSON.parse(event.requestContext.authorizer.user);
+
   const response = {
     statusCode: 200,
     body: JSON.stringify({
