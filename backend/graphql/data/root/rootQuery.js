@@ -1,13 +1,8 @@
 import {
   GraphQLObjectType,
-  GraphQLNonNull,
-  GraphQLString,
-  GraphQLID,
-  GraphQLList
 } from 'graphql';
 
-import { NodeInterface } from '../../interfaces/nodeInterface';
-import { TeamType } from '../team/teamType';
+import { UserType } from '../user/userType';
 import { generateUser, generateTeam } from '../dataGenerators';
 
 export const RootQuery = new GraphQLObjectType({
@@ -15,16 +10,10 @@ export const RootQuery = new GraphQLObjectType({
   description: 'The root query',
   fields: {
     viewer: {
-      type: NodeInterface,
+      type: UserType,
       resolve(source, args, context) {
-        return generateUser(false, generateTeam());
+        return generateUser();
       },
     },
-    teams: {
-      type: new GraphQLList(TeamType),
-      resolve(source, args, context) {
-        return Array(...Array(3)).map(() => generateTeam());
-      }
-    }
   },
 });

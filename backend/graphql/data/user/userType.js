@@ -1,16 +1,15 @@
 import {
-  GraphQLSchema,
   GraphQLObjectType,
   GraphQLID,
-  GraphQLList,
   GraphQLNonNull,
   GraphQLString,
   GraphQLBoolean,
-  GraphQLInterfaceType,
 } from 'graphql'
 
 import { NodeInterface } from '../../interfaces/nodeInterface';
+import { ProfileType } from './profileType';
 import { TeamType } from '../team/teamType';
+import { generateTeam, generateProfile } from '../dataGenerators';
 
 export class User {
   constructor(input) {
@@ -30,17 +29,22 @@ export const UserType = new GraphQLObjectType({
     id: {
       type: new GraphQLNonNull(GraphQLID),
     },
-    firstName: {
-      type: GraphQLString,
-    },
-    lastName: {
-      type: GraphQLString,
+    profile: {
+      type: ProfileType,
+      resolve: (user) => {
+        console.log(user);
+        return generateProfile();
+      }
     },
     isLeader: {
       type: new GraphQLNonNull(GraphQLBoolean),
     },
     team: {
-      type: TeamType
+      type: TeamType,
+      resolve: (user) => {
+        console.log(user);
+        return generateTeam();
+      },
     }
   }),
   isTypeOf: (item) => item instanceof User,

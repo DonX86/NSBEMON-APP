@@ -1,5 +1,43 @@
 import React from 'react';
+import { graphql } from 'react-apollo';
+import gql from 'graphql-tag';
 
-export const Leader = () => (
-  <h1> Leader component </h1>
-);
+class LeaderComponent extends React.Component {
+
+  render() {
+    // Gather the props from the apollo call
+    const { data: { loading, error, viewer }} = this.props;
+
+    if (loading) {
+      return (<h1> Loading </h1>);
+    } else if (error) {
+      return (<h1> There was an error </h1>);
+    } else {
+      return (
+        <div>
+          <h1> Leader component </h1>
+          <h3> My Leader Id: { this.props.data.viewer.team.leader.id }</h3>
+        </div>
+      );
+    }
+  }
+};
+
+// Attach the data from the server
+const LeaderComponentQuery = gql`
+  query LeaderComponentQuery {
+    viewer {
+      isLeader
+      team {
+        leader {
+          id
+          profile {
+            firstName
+            lastName
+          }
+        }
+      }
+    }
+  }
+`
+export const Leader = graphql(LeaderComponentQuery)(LeaderComponent);

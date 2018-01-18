@@ -1,5 +1,4 @@
 import {
-  GraphQLSchema,
   GraphQLObjectType,
   GraphQLID,
   GraphQLList,
@@ -9,6 +8,7 @@ import {
 
 import { NodeInterface } from '../../interfaces/nodeInterface';
 import { UserType } from '../user/userType';
+import { generateUser } from '../dataGenerators';
 
 export class Team {
   constructor(input) {
@@ -32,9 +32,17 @@ export const TeamType = new GraphQLObjectType({
     },
     leader: {
       type: UserType,
+      resolve: (team) => {
+        console.log(team);
+        return generateUser();
+      }
     },
     members: {
       type: new GraphQLList(UserType),
+      resolve: (team) => {
+        console.log(team);
+        return Array(...Array(3)).map(() => generateUser());
+      }
     },
   }),
   isTypeOf: (item) => item instanceof Team,
