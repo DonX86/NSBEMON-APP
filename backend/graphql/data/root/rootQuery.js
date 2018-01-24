@@ -5,6 +5,14 @@ import {
 import { UserType } from '../user/userType';
 import { generateUser, generateTeam } from '../dataGenerators';
 
+const returnViewer = async () => {
+  const delay = await new Promise(resolve => {
+    setTimeout(() => resolve(), 500);
+  });
+  return generateUser();
+};
+
+
 export const RootQuery = new GraphQLObjectType({
   name: 'RootQuery',
   description: 'The root query',
@@ -12,7 +20,7 @@ export const RootQuery = new GraphQLObjectType({
     viewer: {
       type: UserType,
       resolve(source, args, context) {
-        return generateUser();
+        return returnViewer();
       },
     },
   },
