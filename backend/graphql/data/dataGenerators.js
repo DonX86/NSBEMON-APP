@@ -22,6 +22,12 @@ export const generateProfile = () => {
   return {
     firstName: uuidv4(),
     lastName: uuidv4(),
-    points: Math.floor(Math.random() * 20),
   };
 };
+
+export const generateCategory = () => {
+  return {
+    points: Math.floor(Math.random() * 20),
+    label: uuidv4(),
+  }
+}

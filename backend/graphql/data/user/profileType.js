@@ -1,9 +1,12 @@
 import {
   GraphQLObjectType,
-  GraphQLNonNull,
+  GraphQLList,
   GraphQLString,
   GraphQLInt
 } from 'graphql'
+
+import { generateCategory } from '../dataGenerators';
+import { CategoryType } from './categoryType';
 
 export const ProfileType = new GraphQLObjectType({
   name: 'ProfileType',
@@ -15,8 +18,12 @@ export const ProfileType = new GraphQLObjectType({
     lastName: {
       type: GraphQLString,
     },
-    points: {
-      type: new GraphQLNonNull(GraphQLInt)
+    categories: {
+      type: new GraphQLList(CategoryType),
+      resolve: (profile) => {
+        console.log(profile);
+        return Array(...Array(3)).map(() => generateCategory());
+      }
     }
   }),
 });
