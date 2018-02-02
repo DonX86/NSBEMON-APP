@@ -9,6 +9,7 @@ import { Profile } from './profile/Profile';
 import { Login } from './login/Login';
 import { Logout } from './login/Logout';
 import { Teams } from './teams/Teams';
+import { Admin } from './admin/Admin';
 import { authenticationClient } from '../authentication/Authentication';
 import { Alert, Container } from 'reactstrap';
 
@@ -17,6 +18,7 @@ const loggedInRoutes = [
   { name: 'Teammates' , render: 'teammates'},
   { name: 'Profile', render: 'profile'},
   { name: 'Teams', render: 'teams'},
+  { name: 'Admin', render: 'admin'},
   { name: 'Logout', render: 'logout'},
 ];
 
@@ -73,6 +75,7 @@ class App extends React.Component {
             <PrivateRoute exact path='/teammates' component={Members} />
             <PrivateRoute exact path='/profile' component={Profile} />
             <PrivateRoute exact path='/teams' component={Teams} />
+            <PrivateRoute exact path='/admin' component={Admin} />
             <Route exact path='/login' render={() => <Login handleLogin={this.handleLogin} />} />
             <Route exact path='/logout' render={() => <Logout handleLogout={this.handleLogout}/>} />
 
