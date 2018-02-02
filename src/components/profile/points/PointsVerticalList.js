@@ -9,13 +9,9 @@ const PointsVerticalList = (props) => {
   let groupedCategories = [];
   let original = [...props.categories];
   while (original.length > 0) {
-    console.log('takeN', takeN(original, 3));
     groupedCategories.push(takeN(original, 3));
     original = dropN(original, 3);
   }
-
-  console.log(groupedCategories);
-
 
   return (
     <Container>

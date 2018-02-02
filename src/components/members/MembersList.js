@@ -3,11 +3,10 @@ import { Row, Col, Container} from 'reactstrap';
 
 import { MemberItem } from './MemberItem';
 
-
 const MembersList = (props) => {
   return props.members.map(member => (
-    <Container key={member.id} >
-      <Row key={member.id}>
+    <Container key={'member_' + member.id} >
+      <Row>
         <Col>
           <MemberItem member={member} />
         </Col>

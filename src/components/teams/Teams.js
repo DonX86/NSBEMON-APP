@@ -25,6 +25,7 @@ class TeamsComponent extends React.Component {
 const TeamsComponentQuery = gql`
   query TeamsComponentQuery {
     teams {
+      id
       name
       leader {
         profile {

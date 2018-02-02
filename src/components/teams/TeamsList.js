@@ -5,8 +5,8 @@ import { TeamItem } from './TeamItem';
 
 const TeamsList = (props) => {
   return props.teams.map(team => (
-    <Container key={team.id} >
-      <Row key={team.id}>
+    <Container key={'team_' + team.id} >
+      <Row>
         <Col>
           <TeamItem team={team} />
         </Col>
