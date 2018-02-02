@@ -21,6 +21,6 @@ app.use('/graphql', graphqlHTTP(() => {
   return { schema: RootSchema, graphiql: true, };
 }));
 
-app.listen(3000);
+app.listen(4000);
 
 console.log('Running GraphQL server...');
