@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { Alert } from 'reactstrap';
+
 class Load extends React.Component {
 
   render() {

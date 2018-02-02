@@ -15,10 +15,10 @@ const LeaderView = (props) => {
   return (
     <Container>
       <Row>
-        <Col xs="auto">
-          <img src="public/images/profile-placeholder.jpg" className="float-left" alt="Leader Profile Picture" />
+        <Col xs="12" sm="12" md="4">
+          <img src="public/images/pokemon_profile.jpg" className="float-left img-thumbnail" alt="Leader Profile Picture" />
         </Col>
-        <Col>
+        <Col style={{marginTop: "25px"}}>
           <LeaderProfile viewer={props.viewer} />
         </Col>
       </Row>

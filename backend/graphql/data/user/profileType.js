@@ -22,7 +22,7 @@ export const ProfileType = new GraphQLObjectType({
       type: new GraphQLList(CategoryType),
       resolve: (profile) => {
         console.log(profile);
-        return Array(...Array(3)).map(() => generateCategory());
+        return Array(...Array(4)).map(() => generateCategory());
       }
     }
   }),
