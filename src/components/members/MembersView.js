@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container } from 'reactstrap';
 
-import { MembersList } from './MembersList';
+import MembersList from './MembersList';
 
 const MembersView = (props) => {
   return (
@@ -13,4 +13,4 @@ const MembersView = (props) => {
   );
 };
 
-export { MembersView };
+export default MembersView;

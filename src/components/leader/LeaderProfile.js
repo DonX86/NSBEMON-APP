@@ -31,4 +31,4 @@ const LeaderProfile = (props) => {
   );
 };
 
-export { LeaderProfile };
+export default LeaderProfile;

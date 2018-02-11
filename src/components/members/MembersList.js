@@ -1,7 +1,7 @@
 import React from 'react';
 import { Row, Col, Container} from 'reactstrap';
 
-import { MemberItem } from './MemberItem';
+import MemberItem from './MemberItem';
 
 const MembersList = (props) => {
   return props.members.map(member => (
@@ -16,4 +16,4 @@ const MembersList = (props) => {
   ));
 };
 
-export { MembersList };
+export default MembersList;

@@ -30,4 +30,4 @@ const Points = (props) => {
   );
 };
 
-export { Points };
+export default Points;

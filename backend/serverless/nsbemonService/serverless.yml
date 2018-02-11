@@ -1,5 +1,9 @@
 service: nsbemonService
 
+plugins:
+  - serverless-webpack
+  - serverless-offline
+
 provider:
   name: aws
   runtime: nodejs6.10
@@ -33,4 +37,4 @@ functions:
           path: graphql
           method: post
           cors: true
-          authorizer: authenticate
+          # authorizer: authenticate

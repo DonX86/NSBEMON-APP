@@ -24,4 +24,4 @@ class Load extends React.Component {
   }
 };
 
-export { Load };
+export default Load;

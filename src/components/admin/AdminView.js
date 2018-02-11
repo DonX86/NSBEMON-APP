@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container } from 'reactstrap';
 
-import { AddUser } from './adminComponents/AddUser';
+import AddUser from './adminComponents/AddUser';
 
 const AdminView = (props) => {
   return (
@@ -11,4 +11,4 @@ const AdminView = (props) => {
   );
 };
 
-export { AdminView };
+export default AdminView;

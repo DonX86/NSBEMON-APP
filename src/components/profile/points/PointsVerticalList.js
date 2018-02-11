@@ -2,7 +2,7 @@ import React from 'react';
 import { Container, Row, Col } from 'reactstrap';
 import { takeN, dropN } from '../../utilities/utilities';
 
-import { PointsHorizontalList } from './PointsHorizontalList';
+import PointsHorizontalList from './PointsHorizontalList';
 
 const PointsVerticalList = (props) => {
 
@@ -26,4 +26,4 @@ const PointsVerticalList = (props) => {
   );
 };
 
-export { PointsVerticalList };
+export default PointsVerticalList;

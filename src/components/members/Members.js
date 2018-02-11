@@ -2,10 +2,10 @@ import React from 'react';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 
-import { Load } from '../utilities/Load';
-import { MembersView } from './MembersView';
+import Load from '../utilities/Load';
+import MembersView from './MembersView';
 
-class MembersComponent extends React.Component {
+class Members extends React.Component {
 
   render() {
     // Gather the props from the apollo call
@@ -22,8 +22,8 @@ class MembersComponent extends React.Component {
 };
 
 // Attach the data from the server
-const MembersComponentQuery = gql`
-  query MembersComponentQuery {
+const MembersQuery = gql`
+  query MembersQuery {
     viewer {
       id
       team {
@@ -41,4 +41,4 @@ const MembersComponentQuery = gql`
     }
   }
 `
-export const Members = graphql(MembersComponentQuery)(MembersComponent);
+export default graphql(MembersQuery)(Members);

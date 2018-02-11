@@ -1,4 +1,4 @@
-const jwt = require('jsonwebtoken');
+import jwt from 'jsonwebtoken';
 
 const buildIAMPolicy = (userId, resourceArn, context) => {
   const policy = {
@@ -18,7 +18,7 @@ const buildIAMPolicy = (userId, resourceArn, context) => {
   return policy;
 }
 
-module.exports.handler = (event, context, callback) => {
+export const handler = (event, context, callback) => {
 
   // Get the token provided in the Authorization header
   const token = event.authorizationToken;

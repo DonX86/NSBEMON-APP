@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container } from 'reactstrap';
 
-import { TeamsList } from './TeamsList';
+import TeamsList from './TeamsList';
 
 const TeamsView = (props) => {
   return (
@@ -13,4 +13,4 @@ const TeamsView = (props) => {
   );
 };
 
-export { TeamsView };
+export default TeamsView;

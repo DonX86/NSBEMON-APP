@@ -2,8 +2,8 @@ import React from 'react';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 
-import { Load } from '../utilities/Load.js';
-import { ProfileView } from './ProfileView';
+import Load from '../utilities/Load.js';
+import ProfileView from './ProfileView';
 
 class ProfileComponent extends React.Component {
 
@@ -37,4 +37,4 @@ const ProfileComponentQuery = gql`
     }
   }
 `
-export const Profile = graphql(ProfileComponentQuery)(ProfileComponent);
+export default graphql(ProfileComponentQuery)(ProfileComponent);

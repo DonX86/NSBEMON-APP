@@ -1,8 +1,8 @@
-const jwt = require('jsonwebtoken');
+import jwt from 'jsonwebtoken';
 
 const JWT_EXPIRATION_TIME = '5m';
 
-module.exports.handler = (event, context, callback) => {
+export const handler = (event, context, callback) => {
   // Extract the username and password
   const { username, password } = JSON.parse(event.body);
 
@@ -18,7 +18,7 @@ module.exports.handler = (event, context, callback) => {
         statusCode: 401,
         headers: {
           'Access-Control-Allow-Origin': '*',
-        }
+        },
         body: JSON.stringify({ error }),
       };
     } else {
@@ -26,7 +26,7 @@ module.exports.handler = (event, context, callback) => {
         statusCode: 200,
         headers: {
           'Access-Control-Allow-Origin': '*',
-        }
+        },
         body: JSON.stringify({ token }),
       };
     }

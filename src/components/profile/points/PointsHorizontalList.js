@@ -1,7 +1,7 @@
 import React from 'react';
 import { Col } from 'reactstrap';
 
-import { Points } from './Points';
+import Points from './Points';
 
 const PointsHorizontalList = (props) => {
 
@@ -12,4 +12,4 @@ const PointsHorizontalList = (props) => {
   ));
 };
 
-export { PointsHorizontalList };
+export default PointsHorizontalList;

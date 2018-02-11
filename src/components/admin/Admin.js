@@ -2,10 +2,10 @@ import React from 'react';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 
-import { Load } from '../utilities/Load';
-import { AdminView } from './AdminView';
+import Load from '../utilities/Load';
+import AdminView from './AdminView';
 
-class AdminComponent extends React.Component {
+class Admin extends React.Component {
 
   render() {
     // Gather the props from the apollo call
@@ -22,11 +22,11 @@ class AdminComponent extends React.Component {
 };
 
 // Attach the data from the server
-const AdminComponentQuery = gql`
-  query AdminComponentQuery {
+const AdminQuery = gql`
+  query AdminQuery {
     viewer {
       id
     }
   }
 `
-export const Admin = graphql(AdminComponentQuery)(AdminComponent);
+export default graphql(AdminQuery)(Admin);

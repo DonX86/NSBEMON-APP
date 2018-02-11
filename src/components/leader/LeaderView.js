@@ -9,7 +9,7 @@ import {
   ListGroupItemHeading
 } from 'reactstrap';
 
-import { LeaderProfile } from './LeaderProfile';
+import LeaderProfile from './LeaderProfile';
 
 const LeaderView = (props) => {
   return (
@@ -26,4 +26,4 @@ const LeaderView = (props) => {
   )
 };
 
-export { LeaderView };
+export default LeaderView;

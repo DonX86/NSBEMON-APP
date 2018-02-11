@@ -2,10 +2,10 @@ import React from 'react';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 
-import { Load } from '../utilities/Load';
-import { LeaderView } from './LeaderView';
+import Load from '../utilities/Load';
+import LeaderView from './LeaderView';
 
-class LeaderComponent extends React.Component {
+class Leader extends React.Component {
 
   render() {
     // Gather the props from the apollo call
@@ -22,8 +22,8 @@ class LeaderComponent extends React.Component {
 };
 
 // Attach the data from the server
-const LeaderComponentQuery = gql`
-  query LeaderComponentQuery {
+const LeaderQuery = gql`
+  query LeaderQuery {
     viewer {
       id
       isLeader
@@ -40,4 +40,4 @@ const LeaderComponentQuery = gql`
     }
   }
 `
-export const Leader = graphql(LeaderComponentQuery)(LeaderComponent);
+export default graphql(LeaderQuery)(Leader);

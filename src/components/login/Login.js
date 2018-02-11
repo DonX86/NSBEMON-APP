@@ -32,13 +32,13 @@ const LoginFields = (props) => {
           placeholder="Password"
           onChange={(e) => props.handlePasswordChange(e)}/>
       </FormGroup>
-      <Button onClick={(e) => props.handleSubmit(e)}>Submit</Button>
+      <Button outline onClick={(e) => props.handleSubmit(e)}>Submit</Button>
     </Form>
   );
 }
 
 
-export class Login extends React.Component {
+class Login extends React.Component {
 
   state = {
     username: '',
@@ -100,3 +100,5 @@ export class Login extends React.Component {
     );
   }
 }
+
+export default Login;

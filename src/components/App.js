@@ -1,17 +1,18 @@
 import React from 'react';
-
 import { Route, Redirect, Switch } from 'react-router-dom';
-import { AppMenu } from './AppMenu';
-import { PrivateRoute } from './utilities/PrivateRoute';
-import { Leader } from './leader/Leader';
-import { Members } from './members/Members';
-import { Profile } from './profile/Profile';
-import { Login } from './login/Login';
-import { Logout } from './login/Logout';
-import { Teams } from './teams/Teams';
-import { Admin } from './admin/Admin';
-import { authenticationClient } from '../authentication/Authentication';
 import { Alert, Container } from 'reactstrap';
+
+import AppMenu from './AppMenu';
+import PrivateRoute from './utilities/PrivateRoute';
+import Leader from './leader/Leader';
+import Members from './members/Members';
+import Profile from './profile/Profile';
+import Login from './login/Login';
+import Logout from './login/Logout';
+import Teams from './teams/Teams';
+import Admin from './admin/Admin';
+import Train from './profile/train/Train';
+import { authenticationClient } from '../authentication/Authentication';
 
 const loggedInRoutes = [
   { name: 'Leader', render: 'leader'},
@@ -76,6 +77,7 @@ class App extends React.Component {
             <PrivateRoute exact path='/profile' component={Profile} />
             <PrivateRoute exact path='/teams' component={Teams} />
             <PrivateRoute exact path='/admin' component={Admin} />
+            <PrivateRoute exact path='/trainer/train' component={Train} />
             <Route exact path='/login' render={() => <Login handleLogin={this.handleLogin} />} />
             <Route exact path='/logout' render={() => <Logout handleLogout={this.handleLogout}/>} />
 
@@ -87,4 +89,4 @@ class App extends React.Component {
   }
 };
 
-export { App };
+export default App;

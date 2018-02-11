@@ -43,4 +43,4 @@ const TeamItem = (props) => {
   );
 };
 
-export { TeamItem };
+export default TeamItem;

@@ -2,10 +2,10 @@ import React from 'react';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 
-import { Load } from '../utilities/Load';
-import { TeamsView } from './TeamsView';
+import Load from '../utilities/Load';
+import TeamsView from './TeamsView';
 
-class TeamsComponent extends React.Component {
+class Teams extends React.Component {
 
   render() {
     // Gather the props from the apollo call
@@ -22,8 +22,8 @@ class TeamsComponent extends React.Component {
 };
 
 // Attach the data from the server
-const TeamsComponentQuery = gql`
-  query TeamsComponentQuery {
+const TeamsQuery = gql`
+  query TeamsQuery {
     teams {
       id
       name
@@ -43,4 +43,4 @@ const TeamsComponentQuery = gql`
     }
   }
 `
-export const Teams = graphql(TeamsComponentQuery)(TeamsComponent);
+export default graphql(TeamsQuery)(Teams);

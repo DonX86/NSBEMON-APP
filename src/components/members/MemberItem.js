@@ -43,4 +43,4 @@ const MemberItem = (props) => {
   );
 };
 
-export { MemberItem };
+export default MemberItem;

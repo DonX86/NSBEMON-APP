@@ -9,8 +9,8 @@ import {
   ListGroupItemHeading
 } from 'reactstrap';
 
-import { ProfileProfile } from './ProfileProfile';
-import { PointsVerticalList } from './points/PointsVerticalList';
+import ProfileProfile from './ProfileProfile';
+import PointsVerticalList from './points/PointsVerticalList';
 
 const ProfileView = (props) => {
   return (
@@ -31,4 +31,4 @@ const ProfileView = (props) => {
   )
 };
 
-export { ProfileView };
+export default ProfileView;

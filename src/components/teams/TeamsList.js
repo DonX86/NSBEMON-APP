@@ -1,7 +1,7 @@
 import React from 'react';
 import { Row, Col, Container} from 'reactstrap';
 
-import { TeamItem } from './TeamItem';
+import TeamItem from './TeamItem';
 
 const TeamsList = (props) => {
   return props.teams.map(team => (
@@ -16,4 +16,4 @@ const TeamsList = (props) => {
   ));
 };
 
-export { TeamsList };
+export default TeamsList;

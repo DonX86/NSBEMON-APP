@@ -4,7 +4,7 @@ import { Route, Redirect } from 'react-router-dom';
 
 import { authenticationClient } from '../../authentication/Authentication.js';
 
-export const PrivateRoute = ({ component, ...rest }) => (
+const PrivateRoute = ({ component, ...rest }) => (
   <Route {...rest} render={(props) => (
     authenticationClient.isLoggedIn() ? (
       React.createElement(component, props)
@@ -16,3 +16,5 @@ export const PrivateRoute = ({ component, ...rest }) => (
     )
   )} />
 );
+
+export default PrivateRoute;
