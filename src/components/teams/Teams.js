@@ -19,7 +19,7 @@ class Teams extends React.Component {
       />
     );
   }
-};
+}
 
 // Attach the data from the server
 const TeamsQuery = gql`

@@ -1,5 +1,6 @@
 import React from 'react';
 import { graphql, compose } from 'react-apollo';
+import PropTypes from 'prop-types';
 import gql from 'graphql-tag';
 import {
   Container,
@@ -9,21 +10,16 @@ import {
   Label,
   Input,
   Button,
-  Row,
-  Col,
-  Image,
+  Row
 } from 'reactstrap';
 
-const CategoriesList = (props) => {
+const CategoriesList = props => {
   return props.categories.map((item, i) => (
-    <option key={'category_' + i}>
-      {item}
-    </option>
+    <option key={'category_' + i}>{item}</option>
   ));
-}
+};
 
 class Train extends React.Component {
-
   constructor(props) {
     super(props);
 
@@ -32,29 +28,29 @@ class Train extends React.Component {
       description: '',
       category: '',
       imageFile: null,
-      imagePreviewUrl: null,
+      imagePreviewUrl: null
     };
   }
 
-  handleTitleChange = (event) => {
+  handleTitleChange = event => {
     this.setState({
-      title: event.target.value,
+      title: event.target.value
     });
-  }
+  };
 
-  handleDescriptionChange = (event) => {
+  handleDescriptionChange = event => {
     this.setState({
-      description: event.target.value,
+      description: event.target.value
     });
-  }
+  };
 
-  handleCategoryChange = (event) => {
+  handleCategoryChange = event => {
     this.setState({
-      category: event.target.value,
+      category: event.target.value
     });
-  }
+  };
 
-  handleImageChange = (event) => {
+  handleImageChange = event => {
     event.preventDefault();
 
     const reader = new FileReader();
@@ -63,27 +59,39 @@ class Train extends React.Component {
     reader.onloadend = () => {
       this.setState({
         imageFile: file,
-        imagePreviewUrl: reader.result,
+        imagePreviewUrl: reader.result
       });
-    }
+    };
     reader.readAsDataURL(file);
-  }
+  };
 
-  handleSubmit = (event) => {
+  handleSubmit = event => {
     event.preventDefault();
-    console.log(this.state);
-    this.props.history.goBack();
-  }
+
+    this.props
+      .submitTraining({
+        variables: {
+          title: this.state.title,
+          description: this.state.description,
+          category: this.state.category,
+          imageFile: this.state.imageFile
+        }
+      })
+      .then(() => {
+        this.props.history.goBack();
+      });
+  };
 
   handleCancel = () => {
     this.props.history.goBack();
-  }
+  };
 
   render() {
-
     let $imagePreview = null;
     if (this.state.imagePreviewUrl) {
-      $imagePreview = (<img className="img-thumbnail" src={this.state.imagePreviewUrl} />);
+      $imagePreview = (
+        <img className="img-thumbnail" src={this.state.imagePreviewUrl} />
+      );
     }
 
     return (
@@ -98,8 +106,8 @@ class Train extends React.Component {
                 type="text"
                 placeholder="A title for your training..."
                 value={this.state.title}
-                onChange={(e) => this.handleTitleChange(e)}
-             />
+                onChange={e => this.handleTitleChange(e)}
+              />
             </FormGroup>
             <FormGroup>
               <Label for="trainingDescription">Description</Label>
@@ -109,7 +117,7 @@ class Train extends React.Component {
                 type="text"
                 placeholder="A very short description of your training..."
                 value={this.state.description}
-                onChange={(e) => this.handleDescriptionChange(e)}
+                onChange={e => this.handleDescriptionChange(e)}
               />
             </FormGroup>
             <FormGroup>
@@ -118,9 +126,9 @@ class Train extends React.Component {
                 type="select"
                 id="trainingCategory"
                 value={this.state.category}
-                onChange={(e) => this.handleCategoryChange(e)}
+                onChange={e => this.handleCategoryChange(e)}
               >
-                <CategoriesList categories={["", "one", "two"]} />
+                <CategoriesList categories={['', 'one', 'two']} />
               </Input>
             </FormGroup>
             <FormGroup>
@@ -130,22 +138,50 @@ class Train extends React.Component {
                 type="file"
                 id="trainingImage"
                 value={this.state.image}
-                onChange={(e) => this.handleImageChange(e)}
+                onChange={e => this.handleImageChange(e)}
               />
               <FormText color="muted">
-                A jpeg or png image that will help your team leader approve your training.
+                A jpeg or png image that will help your team leader approve your
+                training.
               </FormText>
               {$imagePreview}
             </FormGroup>
           </Form>
         </Row>
         <Row>
-          <Button onClick={(e) => this.handleSubmit(e)} outline color="success">Submit</Button>
-          <Button onClick={this.handleCancel} outline >Cancel</Button>
+          <Button onClick={e => this.handleSubmit(e)} outline color="success">
+            Submit
+          </Button>
+          <Button onClick={this.handleCancel} outline>
+            Cancel
+          </Button>
         </Row>
       </Container>
     );
   }
 }
 
-export default Train;
+Train.propTypes = {
+  history: PropTypes.object,
+  submitTraining: PropTypes.func
+};
+
+const submitTraining = gql`
+  mutation submitTraining(
+    $title: String!
+    $description: String!
+    $category: String!
+    $imageFile: Upload
+  ) {
+    submitTraining(
+      title: $title
+      description: $description
+      category: $category
+      imageFile: $imageFile
+    )
+  }
+`;
+
+export default compose(graphql(submitTraining, { name: 'submitTraining' }))(
+  Train
+);

@@ -4,28 +4,17 @@ import {
   GraphQLList,
   GraphQLNonNull,
   GraphQLString,
-} from 'graphql'
+} from 'graphql';
 
-import { NodeInterface } from '../../interfaces/nodeInterface';
 import { UserType } from '../user/userType';
 import { generateUser } from '../dataGenerators';
-
-export class Team {
-  constructor(input) {
-    this.id = input.id;
-    this.name = input.name;
-    this.leader = input.leader;
-    this.members = input.members;
-  }
-}
 
 export const TeamType = new GraphQLObjectType({
   name: 'TeamType',
   description: 'An object representing a single team',
-  interfaces: [ NodeInterface ],
   fields: () => ({
     id: {
-      type: new GraphQLNonNull(GraphQLID),
+      type: new GraphQLNonNull(GraphQLID)
     },
     name: {
       type: new GraphQLNonNull(GraphQLString),
@@ -45,5 +34,5 @@ export const TeamType = new GraphQLObjectType({
       }
     },
   }),
-  isTypeOf: (item) => item instanceof Team,
+  //isTypeOf: (item) => item instanceof Team,
 });
