@@ -1,14 +1,14 @@
 import Sequelize from 'sequelize';
-import { sequelize } from '../config/configure';
+import { createModel } from './utility';
 
-const Member = sequelize.define(
-  'Member',
-  {
-    isLeader: Sequelize.BOOLEAN,
-    username: Sequelize.STRING,
-    encryptedPassword: Sequelize.STRING
-  },
-  {}
-);
-
-export default Member;
+export default async () => {
+  return await createModel(
+    'Member',
+    {
+      isLeader: Sequelize.BOOLEAN,
+      username: Sequelize.STRING,
+      encryptedPassword: Sequelize.STRING,
+    },
+    {}
+  );
+};

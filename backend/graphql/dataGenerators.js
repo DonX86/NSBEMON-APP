@@ -7,7 +7,7 @@ export const generateUser = () => {
     lastName: uuidv4(),
     isLeader: false,
   };
-}
+};
 export const generateTeam = () => {
   return {
     id: uuidv4(),
@@ -26,5 +26,5 @@ export const generateCategory = () => {
   return {
     points: Math.floor(Math.random() * 20),
     label: uuidv4(),
-  }
-}
+  };
+};

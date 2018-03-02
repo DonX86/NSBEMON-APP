@@ -1,12 +1,12 @@
 import Sequelize from 'sequelize';
-import { sequelize } from '../config/configure';
+import { createModel } from './utility';
 
-const Team = sequelize.define(
-  'Team',
-  {
-    name: Sequelize.STRING
-  },
-  {}
-);
-
-export default Team;
+export default async () => {
+  return await createModel(
+    'Team',
+    {
+      name: Sequelize.STRING,
+    },
+    {}
+  );
+};
