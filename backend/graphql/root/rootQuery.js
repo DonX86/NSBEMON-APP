@@ -2,8 +2,8 @@ import { GraphQLObjectType, GraphQLList } from 'graphql';
 
 import { UserType } from '../user/userType';
 import { TeamType } from '../team/teamType';
-import { generateUser, generateTeam } from '../dataGenerators';
-import { Team } from '../../../database/models/db';
+import { generateUser } from '../dataGenerators';
+import getDbInstance from '../../database/models/db';
 
 export const RootQuery = new GraphQLObjectType({
   name: 'RootQuery',
@@ -11,17 +11,16 @@ export const RootQuery = new GraphQLObjectType({
   fields: () => ({
     viewer: {
       type: UserType,
-      resolve: (source, args, context) => {
+      resolve: () => {
         return generateUser();
-      }
+      },
     },
     teams: {
       type: new GraphQLList(TeamType),
-      resolve: (source, args, context) => {
-        return new Promise((resolve, reject) => {
-          resolve(Team.findAll({ raw: true }));
-        });
-      }
-    }
-  })
+      resolve: async () => {
+        const db = await getDbInstance();
+        return await db.Team.findAll({ raw: true });
+      },
+    },
+  }),
 });

@@ -2,8 +2,8 @@ import {
   GraphQLObjectType,
   GraphQLNonNull,
   GraphQLString,
-  GraphQLInt
-} from 'graphql'
+  GraphQLInt,
+} from 'graphql';
 
 export const CategoryType = new GraphQLObjectType({
   name: 'CategoryType',
@@ -14,6 +14,6 @@ export const CategoryType = new GraphQLObjectType({
     },
     points: {
       type: new GraphQLNonNull(GraphQLInt),
-    }
+    },
   }),
 });

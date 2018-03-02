@@ -14,7 +14,7 @@ export const TeamType = new GraphQLObjectType({
   description: 'An object representing a single team',
   fields: () => ({
     id: {
-      type: new GraphQLNonNull(GraphQLID)
+      type: new GraphQLNonNull(GraphQLID),
     },
     name: {
       type: new GraphQLNonNull(GraphQLString),
@@ -24,14 +24,14 @@ export const TeamType = new GraphQLObjectType({
       resolve: (team) => {
         console.log(team);
         return generateUser();
-      }
+      },
     },
     members: {
       type: new GraphQLList(UserType),
       resolve: (team) => {
         console.log(team);
         return Array(...Array(3)).map(() => generateUser());
-      }
+      },
     },
   }),
   //isTypeOf: (item) => item instanceof Team,

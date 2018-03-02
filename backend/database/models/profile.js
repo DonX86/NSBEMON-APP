@@ -1,14 +1,14 @@
 import Sequelize from 'sequelize';
-import { sequelize } from '../config/configure';
+import { createModel } from './utility';
 
-const Profile = sequelize.define(
-  'Profile',
-  {
-    firstName: Sequelize.STRING,
-    lastName: Sequelize.STRING,
-    email: Sequelize.STRING
-  },
-  {}
-);
-
-export default Profile;
+export default async () => {
+  return await createModel(
+    'Profile',
+    {
+      firstName: Sequelize.STRING,
+      lastName: Sequelize.STRING,
+      email: Sequelize.STRING,
+    },
+    {}
+  );
+};

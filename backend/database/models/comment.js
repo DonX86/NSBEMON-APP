@@ -1,12 +1,12 @@
 import Sequelize from 'sequelize';
-import { sequelize } from '../config/configure';
+import { createModel } from './utility';
 
-const Comment = sequelize.define(
-  'Comment',
-  {
-    text: Sequelize.STRING
-  },
-  {}
-);
-
-export default Comment;
+export default async () => {
+  return await createModel(
+    'Comment',
+    {
+      text: Sequelize.STRING,
+    },
+    {}
+  );
+};

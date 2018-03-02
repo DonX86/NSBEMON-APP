@@ -3,7 +3,7 @@ import {
   GraphQLID,
   GraphQLNonNull,
   GraphQLBoolean,
-} from 'graphql'
+} from 'graphql';
 
 import { ProfileType } from './profileType';
 import { TeamType } from '../team/teamType';
@@ -21,7 +21,7 @@ export const UserType = new GraphQLObjectType({
       resolve: (user) => {
         console.log(user);
         return generateProfile();
-      }
+      },
     },
     isLeader: {
       type: new GraphQLNonNull(GraphQLBoolean),
@@ -32,6 +32,6 @@ export const UserType = new GraphQLObjectType({
         console.log(user);
         return generateTeam();
       },
-    }
-  })
+    },
+  }),
 });
