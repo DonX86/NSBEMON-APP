@@ -5,12 +5,12 @@ import {
   GraphQLBoolean,
 } from 'graphql';
 
-import { ProfileType } from './profileType';
+import { ProfileType } from '../profile//profileType';
 import { TeamType } from '../team/teamType';
 import { generateTeam, generateProfile } from '../dataGenerators';
 
-export const UserType = new GraphQLObjectType({
-  name: 'UserType',
+export const MemberType = new GraphQLObjectType({
+  name: 'MemberType',
   description: 'An object representing a single user',
   fields: () => ({
     id: {

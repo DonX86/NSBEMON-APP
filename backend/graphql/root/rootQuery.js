@@ -1,6 +1,6 @@
 import { GraphQLObjectType, GraphQLList } from 'graphql';
 
-import { UserType } from '../user/userType';
+import { MemberType } from '../member/memberType';
 import { TeamType } from '../team/teamType';
 import { generateUser } from '../dataGenerators';
 import getDbInstance from '../../database/models/db';
@@ -10,7 +10,7 @@ export const RootQuery = new GraphQLObjectType({
   description: 'The root query',
   fields: () => ({
     viewer: {
-      type: UserType,
+      type: MemberType,
       resolve: () => {
         return generateUser();
       },

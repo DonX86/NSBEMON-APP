@@ -3,7 +3,7 @@ import Cookies from 'js-cookie';
 class Authentication {
 
   constructor() {
-    this.authServiceEndpoint = "http://localhost:3000";
+    this.authServiceEndpoint = process.env.NSBEMON_API_URL;
   }
 
   isLoggedIn = () => {

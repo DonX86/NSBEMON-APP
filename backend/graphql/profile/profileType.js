@@ -5,7 +5,7 @@ import {
 } from 'graphql';
 
 import { generateCategory } from '../dataGenerators';
-import { CategoryType } from './categoryType';
+import { CategoryType } from '../category/categoryType';
 
 export const ProfileType = new GraphQLObjectType({
   name: 'ProfileType',

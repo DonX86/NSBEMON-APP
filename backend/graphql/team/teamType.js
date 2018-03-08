@@ -6,7 +6,7 @@ import {
   GraphQLString,
 } from 'graphql';
 
-import { UserType } from '../user/userType';
+import { MemberType } from '../member/memberType';
 import { generateUser } from '../dataGenerators';
 
 export const TeamType = new GraphQLObjectType({
@@ -20,14 +20,14 @@ export const TeamType = new GraphQLObjectType({
       type: new GraphQLNonNull(GraphQLString),
     },
     leader: {
-      type: UserType,
+      type: MemberType,
       resolve: (team) => {
         console.log(team);
         return generateUser();
       },
     },
     members: {
-      type: new GraphQLList(UserType),
+      type: new GraphQLList(MemberType),
       resolve: (team) => {
         console.log(team);
         return Array(...Array(3)).map(() => generateUser());

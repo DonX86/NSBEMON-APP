@@ -94,11 +94,11 @@ export const parseMultipart = () => {
         try {
           handler.event.body = await processRequest(handler.event);
         } catch (error) {
-          next(error);
+          return next(error);
         }
-        next();
+        return next();
       } else {
-        next();
+        return next();
       }
     }
   };

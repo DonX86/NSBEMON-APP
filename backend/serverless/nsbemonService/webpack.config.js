@@ -5,6 +5,8 @@ const nodeExternals = require('webpack-node-externals');
 require('babel-core/register');
 require('babel-polyfill');
 
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+
 module.exports = {
   entry: slsw.lib.entries,
   target: 'node',
@@ -20,5 +22,8 @@ module.exports = {
         exclude: /node_modules/
       }
     ]
-  }
+  },
+  plugins: [
+   new UglifyJSPlugin()
+  ]
 };
