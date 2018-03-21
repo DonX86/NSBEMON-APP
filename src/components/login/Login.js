@@ -1,6 +1,6 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
-import { Container, Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import { Container, Button, Form, FormGroup, Label, Input, Alert } from 'reactstrap';
 
 import { authenticationClient } from '../../authentication/Authentication';
 
@@ -35,7 +35,17 @@ const LoginFields = (props) => {
       <Button outline onClick={(e) => props.handleSubmit(e)}>Submit</Button>
     </Form>
   );
-}
+};
+
+const LoginError = ({ error }) => (
+  error ? (
+    <Alert color="danger">
+      <h1>
+        <strong>Error!</strong> {error}
+      </h1>
+    </Alert>
+  ) : null
+);
 
 
 class Login extends React.Component {
@@ -44,9 +54,10 @@ class Login extends React.Component {
     username: '',
     password: '',
     authenticated: false,
+    error: '',
   }
 
-  componentDidMount() {
+  componentWillMount() {
     this.setState({
       authenticated: authenticationClient.isLoggedIn()
     });
@@ -59,21 +70,20 @@ class Login extends React.Component {
     const username = this.state.username;
     const password = this.state.password;
 
-    this.setState({
-      username: '',
-      password: '',
-    });
-
     authenticationClient.login(username, password)
     .then(() => {
       // The authentication client received a valid token and saved it
       this.props.handleLogin();
       this.setState({
         authenticated: true,
+        error: '',
       });
     })
     .catch(err => {
       // Password was invalid... maybe show invalid message
+      this.setState({
+        error: err,
+      });
     });
   }
 
@@ -91,6 +101,7 @@ class Login extends React.Component {
     ) : (
       <Container>
         <LoginHeader />
+        <LoginError error={this.state.error} />
         <LoginFields
           handleUsernameChange={this.handleUsernameChange}
           handlePasswordChange={this.handlePasswordChange}

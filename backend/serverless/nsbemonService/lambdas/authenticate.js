@@ -16,7 +16,7 @@ const buildIAMPolicy = (userId, resourceArn, context) => {
     context,
   };
   return policy;
-}
+};
 
 export const handler = (event, context, callback) => {
 

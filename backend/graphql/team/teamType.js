@@ -34,5 +34,4 @@ export const TeamType = new GraphQLObjectType({
       },
     },
   }),
-  //isTypeOf: (item) => item instanceof Team,
 });

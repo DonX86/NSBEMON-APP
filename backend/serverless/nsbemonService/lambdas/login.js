@@ -1,18 +1,15 @@
 import jwt from 'jsonwebtoken';
-import forge from 'node-forge';
-import getDbInstance from '../../../database/models/db';
+import MemberOperations from '../../../graphql/member/memberOperations';
 
-const JWT_EXPIRATION_TIME = '5m';
+const JWT_EXPIRATION_TIME = '60m';
+const memberOperations = new MemberOperations();
 
-export const handler = async (event, context) => {
+export const handler = async (event, context, callback) => {
   // Extract the username and password
   const { username, password } = JSON.parse(event.body);
 
   // Authenticate the user in the database with username and password
-  const db = await getDbInstance();
-  const encryptedPass = forge.md.sha256.create();
-  encryptedPass.update(password);
-  const user = await db.Member.findOne({ where: { username, encryptedPassword: encryptedPass.digest().toHex() }, raw: true });
+  const user = await memberOperations.memberGetByUsernamePassword({ username, password });
 
   let response;
   if (user) {
@@ -23,6 +20,7 @@ export const handler = async (event, context) => {
           statusCode: 401,
           headers: {
             'Access-Control-Allow-Origin': '*',
+            'Content-Type': 'application/json',
           },
           body: JSON.stringify({ error }),
         };
@@ -31,17 +29,22 @@ export const handler = async (event, context) => {
           statusCode: 200,
           headers: {
             'Access-Control-Allow-Origin': '*',
+            'Content-Type': 'application/json',
           },
           body: JSON.stringify({ token }),
         };
       }
+      return callback(null, response);
     });
   } else {
     response = { 
       statusCode: 401, 
-      headers: { 'Access-Control-Allow-Origin': '*' }, 
+      headers: { 
+        'Access-Control-Allow-Origin': '*',
+        'Content-Type': 'application/json',
+      }, 
       body: JSON.stringify({ error: 'No user found.' }) 
     };
+    return callback(null, response);
   }
-  return response;
 };

@@ -12,18 +12,16 @@ module.exports = {
   target: 'node',
   // Since 'aws-sdk' is not compatible with webpack,
   // we exclude all node dependencies
-  externals: [nodeExternals()],
+  externals: [nodeExternals(), ['sqlite3', 'tedious', 'mysql2']],
   // Run babel on all .js files and skip those in node_modules
   module: {
     loaders: [
       {
         test: /\.jsx?$/,
-        loaders: ["babel-loader"],
-        exclude: /node_modules/
-      }
-    ]
+        loaders: ['babel-loader'],
+        exclude: /node_modules/,
+      },
+    ],
   },
-  plugins: [
-   new UglifyJSPlugin()
-  ]
+  plugins: [new UglifyJSPlugin()],
 };

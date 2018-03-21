@@ -2,8 +2,7 @@
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.addColumn('Comments', 'trainingId', {
-      allowNull: false,
+    return queryInterface.addColumn('Comments', 'TrainingId', {
       type: Sequelize.UUID,
       references: {
         model: 'Trainings',
@@ -12,8 +11,7 @@ module.exports = {
       onDelete: 'cascade',
       onUpdate: 'cascade'
     }).then(() => {
-      return queryInterface.addColumn('Comments', 'memberId', {
-        allowNull: false,
+      return queryInterface.addColumn('Comments', 'MemberId', {
         type: Sequelize.UUID,
         references: {
           model: 'Members',
@@ -26,6 +24,6 @@ module.exports = {
   },
 
   down: (queryInterface) => {
-    return queryInterface.removeColumn('Comments', 'trainingId');
+    return queryInterface.removeColumn('Comments', 'TrainingId');
   }
 };

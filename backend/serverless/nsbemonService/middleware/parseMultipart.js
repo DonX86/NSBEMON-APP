@@ -91,15 +91,9 @@ export const parseMultipart = () => {
       handler.event.headers['content-type'] = contentType;
 
       if (contentType.includes('multipart/form-data')) {
-        try {
-          handler.event.body = await processRequest(handler.event);
-        } catch (error) {
-          return next(error);
-        }
-        return next();
-      } else {
-        return next();
+        handler.event.body = await processRequest(handler.event);
       }
+      next();
     }
   };
 };

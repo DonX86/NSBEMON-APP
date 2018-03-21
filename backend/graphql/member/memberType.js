@@ -3,11 +3,12 @@ import {
   GraphQLID,
   GraphQLNonNull,
   GraphQLBoolean,
+  GraphQLList,
 } from 'graphql';
 
 import { ProfileType } from '../profile//profileType';
 import { TeamType } from '../team/teamType';
-import { generateTeam, generateProfile } from '../dataGenerators';
+import { TrainingType } from '../training/trainingType';
 
 export const MemberType = new GraphQLObjectType({
   name: 'MemberType',
@@ -16,22 +17,20 @@ export const MemberType = new GraphQLObjectType({
     id: {
       type: new GraphQLNonNull(GraphQLID),
     },
-    profile: {
-      type: ProfileType,
-      resolve: (user) => {
-        console.log(user);
-        return generateProfile();
-      },
-    },
     isLeader: {
       type: new GraphQLNonNull(GraphQLBoolean),
     },
+    trainings: {
+      type: new GraphQLList(TrainingType),
+      resolve: (source) => source.Trainings,
+    },
+    profile: {
+      type: ProfileType,
+      resolve: (source) => source.Profile,
+    },
     team: {
       type: TeamType,
-      resolve: (user) => {
-        console.log(user);
-        return generateTeam();
-      },
+      resolve: (source) => source.Team,
     },
   }),
 });

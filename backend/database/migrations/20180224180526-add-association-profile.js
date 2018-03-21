@@ -2,7 +2,7 @@
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.addColumn('Profiles', 'memberId', {
+    return queryInterface.addColumn('Profiles', 'MemberId', {
       type: Sequelize.UUID,
       references: {
         model: 'Members',
@@ -14,6 +14,6 @@ module.exports = {
   },
 
   down: (queryInterface) => {
-    return queryInterface.removeColumn('Profiles', 'memberId');
+    return queryInterface.removeColumn('Profiles', 'MemberId');
   }
 };

@@ -9,7 +9,7 @@ export const CategoryType = new GraphQLObjectType({
   name: 'CategoryType',
   description: 'An object representing the points for a category',
   fields: () => ({
-    label: {
+    title: {
       type: new GraphQLNonNull(GraphQLString),
     },
     points: {

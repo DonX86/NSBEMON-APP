@@ -37,4 +37,4 @@ functions:
           path: graphql
           method: post
           cors: true
-          # authorizer: authenticate
+          authorizer: authenticate

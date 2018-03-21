@@ -23,7 +23,13 @@ app.use('/graphql', (req, res, next) => {
 app.use(
   '/graphql',
   graphqlHTTP(() => {
-    return { schema: RootSchema, graphiql: true };
+    return { 
+      schema: RootSchema, 
+      graphiql: true,
+      context: {
+        __viewer: JSON.parse(process.env.NSBEMON_VIEWER),
+      }
+    };
   })
 );
 

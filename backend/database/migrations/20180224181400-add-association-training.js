@@ -3,8 +3,7 @@
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface
-      .addColumn('Trainings', 'memberId', {
-        allowNull: false,
+      .addColumn('Trainings', 'MemberId', {
         type: Sequelize.UUID,
         references: {
           model: 'Members',
@@ -14,8 +13,7 @@ module.exports = {
         onUpdate: 'cascade'
       })
       .then(() => {
-        return queryInterface.addColumn('Trainings', 'categoryId', {
-          allowNull: false,
+        return queryInterface.addColumn('Trainings', 'CategoryId', {
           type: Sequelize.UUID,
           references: {
             model: 'Categories',
@@ -27,8 +25,8 @@ module.exports = {
   },
 
   down: (queryInterface) => {
-    return queryInterface.removeColumn('Trainings', 'memberId').then(() => {
-      return queryInterface.removeColumn('Trainings', 'categoryId');
+    return queryInterface.removeColumn('Trainings', 'MemberId').then(() => {
+      return queryInterface.removeColumn('Trainings', 'CategoryId');
     });
   }
 };

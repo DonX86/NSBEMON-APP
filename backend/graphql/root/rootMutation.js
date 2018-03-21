@@ -5,11 +5,13 @@ import {
   GraphQLString
 } from 'graphql';
 import { GraphQLUpload } from 'apollo-upload-server';
+import { MemberMutation } from '../member/memberMutation';
 
 export const RootMutation = new GraphQLObjectType({
   name: 'RootMutation',
   description: 'The root mutation',
   fields: {
+    ...MemberMutation,
     submitTraining: {
       type: GraphQLBoolean,
       args: {

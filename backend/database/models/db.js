@@ -29,18 +29,17 @@ export default async () => {
     // Member associations
     Member.belongsTo(Team);
     Member.hasOne(Profile);
-    Member.hasMany(Comment);
+    Member.hasMany(Training);
 
-    // Team assocations
+    // Team associations
     Team.hasMany(Member);
 
     // Profile associations
     Profile.hasOne(Member);
 
     // Training associations
-    Training.hasOne(Member);
-    Training.hasMany(Comment);
-    Training.hasOne(Category);
+    Training.belongsTo(Member);
+    Training.belongsTo(Category);
 
     // Comment associations
     Comment.belongsTo(Training);
