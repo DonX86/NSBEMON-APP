@@ -12,7 +12,7 @@ module.exports = {
   target: 'node',
   // Since 'aws-sdk' is not compatible with webpack,
   // we exclude all node dependencies
-  externals: [nodeExternals(), ['sqlite3', 'tedious', 'mysql2']],
+  externals: [nodeExternals(), ['sqlite3', 'tedious', 'mysql2', 'pg-native']],
   // Run babel on all .js files and skip those in node_modules
   module: {
     loaders: [
