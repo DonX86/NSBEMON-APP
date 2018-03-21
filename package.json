@@ -11,7 +11,7 @@
     "prestart": "npm run start-message",
     "start": "concurrently -k -r -s first \"npm run backend:serverless\" \"npm run open:src\"",
     "graphql": "nodemon backend/graphql/expressServer.js --watch backend/graphql --exec babel-node",
-    "backend:serverless": "cd backend/serverless/nsbemonService && babel-node $(which serverless) offline --stage local --port 4000",
+    "backend:serverless": "cd backend/serverless/nsbemonService && serverless offline --stage local --port 4000",
     "open:src": "babel-node tools/srcServer.js",
     "open:dist": "babel-node tools/distServer.js",
     "lint": "esw webpack.config.* src tools --color",
