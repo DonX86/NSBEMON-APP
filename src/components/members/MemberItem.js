@@ -14,7 +14,7 @@ import { calculatePoints } from '../utilities/calculatePoints';
 
 const MemberItem = (props) => {
 
-  const points = calculatePoints(props.member.profile.categories);
+  const points = calculatePoints(props.member.profile.trainings);
   const progress = points % 10;
   const level = Math.floor(points / 10);
 

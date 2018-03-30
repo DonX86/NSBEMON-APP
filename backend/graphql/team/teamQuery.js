@@ -6,11 +6,29 @@ import getDbInstance from '../../database/models/db';
 import { TeamType } from './teamType';
 
 export const TeamQuery = {
-  getAllTeam: {
+  teamGetAll: {
     type: new GraphQLList(TeamType),
     resolve: async () => {
       const db = await getDbInstance();
-      return db.Team.findAll({ raw: true });
+      const val = await db.Team.findAll({ 
+        include: [
+          {
+            model: db.Member,
+            include: [
+              {
+                model: db.Training,
+                include: [
+                  {
+                    model: db.Category
+                  }
+                ]
+              },
+            ],
+          },
+        ],  
+      });
+      
+      return val;
     },
   },
 };

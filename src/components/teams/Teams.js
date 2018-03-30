@@ -9,13 +9,13 @@ class Teams extends React.Component {
 
   render() {
     // Gather the props from the apollo call
-    const { data: { loading, error, teams }} = this.props;
+    const { data: { loading, error, teamGetAll }} = this.props;
 
     return (
       <Load
         loading={loading}
         error={error}
-        onLoad={<TeamsView teams={teams} />}
+        onLoad={<TeamsView teams={teamGetAll} />}
       />
     );
   }
@@ -24,7 +24,7 @@ class Teams extends React.Component {
 // Attach the data from the server
 const TeamsQuery = gql`
   query TeamsQuery {
-    teams {
+    teamGetAll {
       id
       name
       leader {
@@ -34,13 +34,14 @@ const TeamsQuery = gql`
         }
       }
       members {
-        profile {
-          categories {
+        trainings {
+          category {
+            title
             points
           }
         }
       }
     }
   }
-`
+`;
 export default graphql(TeamsQuery)(Teams);

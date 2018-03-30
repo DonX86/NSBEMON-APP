@@ -13,7 +13,10 @@ export default class MemberOperations {
 
     const db = await getDbInstance();
     return db.Member.findOne({
-      where: { username: input.username, encryptedPassword: encryptedPassword.digest().toHex() },
+      where: {
+        username: input.username,
+        encryptedPassword: encryptedPassword.digest().toHex(),
+      },
       raw: true,
     });
   };
@@ -54,7 +57,27 @@ export default class MemberOperations {
     return newMember.dataValues;
   };
 
+  memberAddToTeam = async (input, context) => {
+    return input.entries.map((entry) => {
+      return this.singleMemberAddToTeam(entry, context);
+    });
+  };
+
   ///////////////////////////////////////////////////////////
   //////////////////// HELPERS //////////////////////////////
   ///////////////////////////////////////////////////////////
+  singleMemberAddToTeam = async (input) => {
+    const db = await getDbInstance();
+    const updatedMember = await db.Member.update(
+      {
+        TeamId: input.teamId,
+      },
+      {
+        where: { id: input.memberId },
+        returning: true,
+        plain: true,
+      },
+    );
+    return updatedMember;
+  }
 }

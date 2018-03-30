@@ -32,9 +32,6 @@ const MembersQuery = gql`
           profile {
             firstName
             lastName
-            categories {
-              points
-            }
           }
         }
       }

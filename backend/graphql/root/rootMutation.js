@@ -6,12 +6,16 @@ import {
 } from 'graphql';
 import { GraphQLUpload } from 'apollo-upload-server';
 import { MemberMutation } from '../member/memberMutation';
+import { TeamMutation } from '../team/teamMutation';
+import { CategoryMutation } from '../category/categoryMutation';
 
 export const RootMutation = new GraphQLObjectType({
   name: 'RootMutation',
   description: 'The root mutation',
-  fields: {
+  fields: () => ({
     ...MemberMutation,
+    ...TeamMutation,
+    ...CategoryMutation,
     submitTraining: {
       type: GraphQLBoolean,
       args: {
@@ -36,5 +40,5 @@ export const RootMutation = new GraphQLObjectType({
         return true;
       }
     }
-  }
+  })
 });

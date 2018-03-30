@@ -3,10 +3,6 @@ import {
   Container,
   Col,
   Row,
-  ListGroup,
-  ListGroupItem,
-  ListGroupItemText,
-  ListGroupItemHeading
 } from 'reactstrap';
 
 import ProfileProfile from './ProfileProfile';
@@ -25,7 +21,7 @@ const ProfileView = (props) => {
       </Row>
       <br/>
       <Row>
-        <PointsVerticalList categories={props.viewer.profile.categories} />
+        <PointsVerticalList trainings={props.viewer.trainings} />
       </Row>
     </Container>
   )

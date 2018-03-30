@@ -28,10 +28,7 @@ export const TeamType = new GraphQLObjectType({
     },
     members: {
       type: new GraphQLList(MemberType),
-      resolve: (team) => {
-        console.log(team);
-        return Array(...Array(3)).map(() => generateUser());
-      },
+      resolve: (source) => source.Members,
     },
   }),
 });

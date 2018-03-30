@@ -3,6 +3,7 @@ import {
   GraphQLNonNull,
   GraphQLString,
   GraphQLBoolean,
+  GraphQLID,
 } from 'graphql';
 
 export const CreateMemberInput = new GraphQLInputObjectType({
@@ -31,6 +32,19 @@ export const GetMemberByUsernamePasswordInput = new GraphQLInputObjectType({
     },
     password: {
       type: new GraphQLNonNull(GraphQLString),
+    }
+  })
+});
+
+export const AssociateMemberTeamInput = new GraphQLInputObjectType({
+  name: 'AssocAssociateMemberTeamInput',
+  description: 'Add a member to a team.',
+  fields: () => ({
+    memberId: {
+      type: new GraphQLNonNull(GraphQLID),
+    },
+    teamId: {
+      type: new GraphQLNonNull(GraphQLID),
     }
   })
 });

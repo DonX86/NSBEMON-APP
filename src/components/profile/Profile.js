@@ -26,13 +26,16 @@ const ProfileComponentQuery = gql`
   query ProfileComponentQuery {
     viewer {
       id
+      trainings {
+        approved
+        category {
+          title
+          points
+        }
+      }
       profile {
         firstName
         lastName
-        categories {
-          label
-          points
-        }
       }
     }
   }

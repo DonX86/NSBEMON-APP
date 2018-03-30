@@ -12,7 +12,7 @@ import { calculatePoints } from '../utilities/calculatePoints';
 
 const ProfileProfile = (props) => {
 
-  const points = calculatePoints(props.viewer.profile.categories);
+  const points = calculatePoints(props.viewer.trainings);
   const progress = points % 10;
   const level = Math.floor(points / 10);
 
