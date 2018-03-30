@@ -5,10 +5,11 @@ import { Alert, Container } from 'reactstrap';
 import AppMenu from './AppMenu';
 import PrivateRoute from './utilities/PrivateRoute';
 import Leader from './leader/Leader';
+import LeaderBoard from './leaderBoard/LeaderBoard';
 import Members from './members/Members';
 import Profile from './profile/Profile';
 import Login from './login/Login';
-import Logout from './login/Logout';
+import Logout from './login/Logout';  
 import Teams from './teams/Teams';
 import Admin from './admin/Admin';
 import Train from './profile/train/Train';
@@ -16,6 +17,7 @@ import { authenticationClient } from '../authentication/Authentication';
 
 const loggedInRoutes = [
   { name: 'Leader', render: 'leader'},
+  { name: 'LeaderBoard', render: 'leaderBoard'},
   { name: 'Teammates' , render: 'teammates'},
   { name: 'Profile', render: 'profile'},
   { name: 'Teams', render: 'teams'},
@@ -73,6 +75,7 @@ class App extends React.Component {
         <Container>
           <Switch>
             <PrivateRoute exact path='/leader' component={Leader} />
+            <PrivateRoute exact path='/leaderBoard' component={LeaderBoard}/>
             <PrivateRoute exact path='/teammates' component={Members} />
             <PrivateRoute exact path='/profile' component={Profile} />
             <PrivateRoute exact path='/teams' component={Teams} />
