@@ -19,7 +19,7 @@ class Admin extends React.Component {
       />
     );
   }
-};
+}
 
 // Attach the data from the server
 const AdminQuery = gql`
@@ -28,5 +28,6 @@ const AdminQuery = gql`
       id
     }
   }
-`
+`;
+
 export default graphql(AdminQuery)(Admin);

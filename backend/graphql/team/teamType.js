@@ -21,8 +21,7 @@ export const TeamType = new GraphQLObjectType({
     },
     leader: {
       type: MemberType,
-      resolve: (team) => {
-        console.log(team);
+      resolve: () => {
         return generateUser();
       },
     },
