@@ -40,7 +40,7 @@ class MemberOperations {
       firstName: input.firstName,
       lastName: input.lastName,
       isAdmin: false,
-      team: '',
+      team: 'none',
     });
   }
 

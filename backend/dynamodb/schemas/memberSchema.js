@@ -23,6 +23,12 @@ module.exports.MemberSchema = new db.Schema(
     },
     team: {
       type: String,
+      index: {
+        rangeKey: 'email',
+        global: true,
+        project: 'all',
+        throughput: 1,
+      },
     },
   },
   {

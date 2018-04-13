@@ -25,19 +25,21 @@ class Leader extends React.Component {
 const LeaderQuery = gql`
   query LeaderQuery {
     viewer {
-      id
+      email
+      isAdmin
       isLeader
       team {
         name
-        leader {
-          id
-          profile {
-            firstName
-            lastName
-          }
+        leaders {
+          email
+          isAdmin
+          isLeader
+          firstName
+          lastName
         }
       }
     }
   }
-`
+`;
+
 export default graphql(LeaderQuery)(Leader);

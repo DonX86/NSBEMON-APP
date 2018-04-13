@@ -10,23 +10,29 @@ module.exports.TeamType = new GraphQLObjectType({
     return ({
       name: {
         type: GraphQLString,
-        resolve: (source) => source.team,
+        resolve: (source) => source,
       },
-      leader: {
-        type: MemberType,
+      leaders: {
+        type: new GraphQLList(MemberType),
         resolve: (source) => {
-          return MemberModel.queryOne({
-            team: source.team,
-            isLeader: true,
-          }).exec();
+          if (source) {
+            return MemberModel.query({ team: source })
+              .filter('isLeader').eq(true).exec();
+          } else {
+            return [];
+          }
         },
       },
       members: {
         type: new GraphQLList(MemberType),
         resolve: (source) => {
-          return MemberModel.query({
-            team: source.team,
-          }).exec();
+          if (source) {
+            return MemberModel.query({
+              team: source,
+            }).exec();
+          } else {
+            return [];
+          }
         },
       },
     });
