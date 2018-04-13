@@ -1,10 +1,10 @@
-import { graphqlLambda } from 'apollo-server-lambda';
-import middy from 'middy';
-import { parseMultipart } from '../middleware/parseMultipart';
+const { graphqlLambda } = require('apollo-server-lambda');
+const middy = require('middy');
+const { parseMultipart } = require('../middleware/parseMultipart');
 
-import { RootSchema } from '../../../graphql/root/rootSchema';
+const RootSchema = require('../../../graphql/root/rootSchema');
 
-export const graphqlHandler = (event, context, callback) => {
+const graphqlHandler = (event, context, callback) => {
 
   const callbackFilter = (error, output) => {
     output.headers['Access-Control-Allow-Origin'] = '*';
@@ -17,7 +17,7 @@ export const graphqlHandler = (event, context, callback) => {
       schema: RootSchema,
       context: {
         context,
-        __viewer: JSON.parse(event.requestContext.authorizer.user),
+        __viewerEmail: event.requestContext.authorizer.email,
       }
     };
   });
@@ -25,5 +25,5 @@ export const graphqlHandler = (event, context, callback) => {
   return newHandler(event, context, callbackFilter);
 };
 
-export const handler = middy(graphqlHandler)
+module.exports.handler = middy(graphqlHandler)
   .use(parseMultipart());

@@ -1,34 +1,14 @@
-import {
-  GraphQLList
-} from 'graphql';
+const { GraphQLList } = require('graphql');
 
-import getDbInstance from '../../database/models/db';
-import { TeamType } from './teamType';
+const { TeamType } = require('./teamType');
 
-export const TeamQuery = {
+module.exports.TeamQuery = {
   teamGetAll: {
     type: new GraphQLList(TeamType),
     resolve: async () => {
-      const db = await getDbInstance();
-      const val = await db.Team.findAll({ 
-        include: [
-          {
-            model: db.Member,
-            include: [
-              {
-                model: db.Training,
-                include: [
-                  {
-                    model: db.Category
-                  }
-                ]
-              },
-            ],
-          },
-        ],  
-      });
-      
-      return val;
+      // Get teams from S3
+
+      return null;
     },
   },
 };

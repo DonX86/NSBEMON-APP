@@ -1,6 +1,6 @@
-import express from 'express';
-import graphqlHTTP from 'express-graphql';
-import { RootSchema } from './root/rootSchema';
+const express = require('express');
+const graphqlHTTP = require('express-graphql');
+const { RootSchema } = require('./root/rootSchema');
 
 const app = express();
 
@@ -27,7 +27,7 @@ app.use(
       schema: RootSchema, 
       graphiql: true,
       context: {
-        __viewer: JSON.parse(process.env.NSBEMON_VIEWER),
+        __viewerEmail: 'a@gmail.com',
       }
     };
   })

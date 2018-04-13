@@ -8,7 +8,7 @@ const LoginHeader = () => (
   <h2>
     Log into your account
   </h2>
-)
+);
 
 const LoginFields = (props) => {
   return (
@@ -20,7 +20,7 @@ const LoginFields = (props) => {
           type="email"
           name="email"
           placeholder="Email"
-          onChange={(e) => props.handleUsernameChange(e)}
+          onChange={(e) => props.handleEmailChange(e)}
         />
       </FormGroup>
       <FormGroup>
@@ -51,7 +51,7 @@ const LoginError = ({ error }) => (
 class Login extends React.Component {
 
   state = {
-    username: '',
+    email: '',
     password: '',
     authenticated: false,
     error: '',
@@ -67,10 +67,10 @@ class Login extends React.Component {
 
     event.preventDefault();
 
-    const username = this.state.username;
+    const email = this.state.email;
     const password = this.state.password;
 
-    authenticationClient.login(username, password)
+    authenticationClient.login(email, password)
     .then(() => {
       // The authentication client received a valid token and saved it
       this.props.handleLogin();
@@ -87,8 +87,8 @@ class Login extends React.Component {
     });
   }
 
-  handleUsernameChange = (event) => {
-    this.setState({ username: event.target.value });
+  handleEmailChange = (event) => {
+    this.setState({ email: event.target.value });
   }
 
   handlePasswordChange = (event) => {
@@ -103,7 +103,7 @@ class Login extends React.Component {
         <LoginHeader />
         <LoginError error={this.state.error} />
         <LoginFields
-          handleUsernameChange={this.handleUsernameChange}
+          handleEmailChange={this.handleEmailChange}
           handlePasswordChange={this.handlePasswordChange}
           handleSubmit={this.handleSubmit}
         />

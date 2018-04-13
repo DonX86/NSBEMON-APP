@@ -19,7 +19,7 @@ class Leader extends React.Component {
       />
     );
   }
-};
+}
 
 // Attach the data from the server
 const LeaderQuery = gql`

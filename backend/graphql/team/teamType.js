@@ -1,33 +1,34 @@
-import {
-  GraphQLObjectType,
-  GraphQLID,
-  GraphQLList,
-  GraphQLNonNull,
-  GraphQLString,
-} from 'graphql';
+const { GraphQLObjectType, GraphQLList, GraphQLString } = require('graphql');
 
-import { MemberType } from '../member/memberType';
-import { generateUser } from '../dataGenerators';
+const { MemberModel } = require('../../dynamodb/models/memberModel');
 
-export const TeamType = new GraphQLObjectType({
+module.exports.TeamType = new GraphQLObjectType({
   name: 'TeamType',
   description: 'An object representing a single team',
-  fields: () => ({
-    id: {
-      type: new GraphQLNonNull(GraphQLID),
-    },
-    name: {
-      type: new GraphQLNonNull(GraphQLString),
-    },
-    leader: {
-      type: MemberType,
-      resolve: () => {
-        return generateUser();
+  fields: () => {
+    const { MemberType } = require('../member/memberType');
+    return ({
+      name: {
+        type: GraphQLString,
+        resolve: (source) => source.team,
       },
-    },
-    members: {
-      type: new GraphQLList(MemberType),
-      resolve: (source) => source.Members,
-    },
-  }),
+      leader: {
+        type: MemberType,
+        resolve: (source) => {
+          return MemberModel.queryOne({
+            team: source.team,
+            isLeader: true,
+          }).exec();
+        },
+      },
+      members: {
+        type: new GraphQLList(MemberType),
+        resolve: (source) => {
+          return MemberModel.query({
+            team: source.team,
+          }).exec();
+        },
+      },
+    });
+  },
 });

@@ -1,23 +1,21 @@
-import {
-  GraphQLNonNull,
-} from 'graphql';
+const { GraphQLNonNull } = require('graphql');
 
-import { TeamType } from './teamType';
-import TeamOperations from './teamOperations';
-import { CreateTeamInput } from './mutationInput';
+const { TeamType } = require('./teamType');
+const { TeamOperations } = require('./teamOperations');
+const { CreateTeamInput } = require('./input');
 
 const teamOperations = new TeamOperations();
 
-export const TeamMutation = {
+module.exports.TeamMutation = {
   teamCreate: {
     type: TeamType,
     args: {
       input: {
         type: new GraphQLNonNull(CreateTeamInput),
-      }
+      },
     },
     resolve: (source, args, context) => {
       return teamOperations.teamCreate(args.input, context);
-    }
-  }
+    },
+  },
 };

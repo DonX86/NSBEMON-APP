@@ -6,7 +6,6 @@ import { BrowserRouter as Router } from "react-router-dom";
 import { client } from './apollo/configuration';
 
 import App from './components/App';
-import AppMenu from './components/AppMenu';
 
 import 'bootstrap/dist/css/bootstrap.css';
 

@@ -1,10 +1,10 @@
-import { GraphQLNonNull } from 'graphql';
-import { TrainingType } from './trainingType';
-import TrainingOperations from './trainingOperations';
+const { GraphQLNonNull } = require('graphql');
+const { TrainingType } = require('./trainingType');
+const { TrainingOperations } = require('./trainingOperations');
 
 const trainingOperations = new TrainingOperations();
 
-export const TrainingMutation = {
+module.exports.TrainingMutation = {
   trainingUpdate: {
     type: TrainingType,
     args: {

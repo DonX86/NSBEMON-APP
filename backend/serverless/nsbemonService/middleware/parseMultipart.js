@@ -1,5 +1,5 @@
-import Busboy from 'busboy';
-import objectPathImmutable from 'object-path-immutable';
+const Busboy = require('busboy');
+const objectPathImmutable = require('object-path-immutable');
 
 /**
  * Processes multipart form data given an AWS Lambda request
@@ -81,7 +81,7 @@ const processRequest = request =>
  * Parsing middleware that handles multipart form data.
  * @returns {object} Middy middleware object
  */
-export const parseMultipart = () => {
+module.exports.parseMultipart = () => {
   return {
     before: async (handler, next) => {
       const contentType =

@@ -1,13 +1,9 @@
-import uuidv4 from 'uuid/v4';
-import getDbInstance from '../../database/models/db';
-
-export default class TeamOperations {
-
+class TeamOperations {
   teamCreate = async (input) => {
+    // Create a team in S3
 
-    const db = await getDbInstance();
-    const newTeam = await db.Team.create({ id: uuidv4(), name: input.name });
-
-    return newTeam.dataValues;
-  }
+    return null;
+  };
 }
+
+module.exports.TeamOperations = TeamOperations;

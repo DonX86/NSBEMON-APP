@@ -10,11 +10,11 @@ class Authentication {
     return !!Cookies.get('nsbemon_auth_token');
   };
 
-  login = (username, password) => {
+  login = (email, password) => {
     return new Promise((resolve, reject) => {
       fetch(this.authServiceEndpoint + '/login', {
         method: 'POST',
-        body: JSON.stringify({ username, password }),
+        body: JSON.stringify({ email, password }),
         headers: new Headers({
           'Content-Type': 'application/json',
           'Accept': 'application/json',

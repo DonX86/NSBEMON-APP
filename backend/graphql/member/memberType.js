@@ -1,36 +1,40 @@
-import {
+const {
   GraphQLObjectType,
-  GraphQLID,
   GraphQLNonNull,
   GraphQLBoolean,
   GraphQLList,
-} from 'graphql';
+  GraphQLString,
+} = require('graphql');
 
-import { ProfileType } from '../profile//profileType';
-import { TeamType } from '../team/teamType';
-import { TrainingType } from '../training/trainingType';
-
-export const MemberType = new GraphQLObjectType({
+module.exports.MemberType = new GraphQLObjectType({
   name: 'MemberType',
   description: 'An object representing a single user',
-  fields: () => ({
-    id: {
-      type: new GraphQLNonNull(GraphQLID),
-    },
-    isLeader: {
-      type: new GraphQLNonNull(GraphQLBoolean),
-    },
-    trainings: {
-      type: new GraphQLList(TrainingType),
-      resolve: (source) => source.Trainings,
-    },
-    profile: {
-      type: ProfileType,
-      resolve: (source) => source.Profile,
-    },
-    team: {
-      type: TeamType,
-      resolve: (source) => source.Team,
-    },
-  }),
+  fields: () => {
+    const { TrainingType } = require('../training/trainingType');
+    const { TeamType } = require('../team/teamType');
+    return ({
+      email: {
+        type: new GraphQLNonNull(GraphQLString),
+      },
+      isLeader: {
+        type: GraphQLBoolean,
+      },
+      isAdmin: {
+        type: GraphQLBoolean,
+      },
+      firstName: {
+        type: GraphQLString,
+      },
+      lastName: {
+        type: GraphQLString,
+      },
+      team: {
+        type: TeamType,
+      },
+      trainings: {
+        type: new GraphQLList(TrainingType),
+        resolve: (source) => [],
+      },
+    });
+  },
 });

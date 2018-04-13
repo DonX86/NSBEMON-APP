@@ -1,12 +1,12 @@
-import {
+const {
   GraphQLInputObjectType,
   GraphQLNonNull,
   GraphQLString,
   GraphQLBoolean,
   GraphQLID,
-} from 'graphql';
+} = require('graphql');
 
-export const CreateMemberInput = new GraphQLInputObjectType({
+module.exports.CreateMemberInput = new GraphQLInputObjectType({
   name: 'CreateMemberInput',
   fields: () => ({
     email: {
@@ -24,27 +24,27 @@ export const CreateMemberInput = new GraphQLInputObjectType({
   }),
 });
 
-export const GetMemberByUsernamePasswordInput = new GraphQLInputObjectType({
+module.exports.GetMemberByEmailPasswordInput = new GraphQLInputObjectType({
   name: 'GetMemberByUsernamePasswordInput',
   fields: () => ({
-    username: {
+    email: {
       type: new GraphQLNonNull(GraphQLString),
     },
     password: {
       type: new GraphQLNonNull(GraphQLString),
-    }
-  })
+    },
+  }),
 });
 
-export const AssociateMemberTeamInput = new GraphQLInputObjectType({
+module.exports.AssociateMemberTeamInput = new GraphQLInputObjectType({
   name: 'AssocAssociateMemberTeamInput',
   description: 'Add a member to a team.',
   fields: () => ({
-    memberId: {
+    memberEmails: {
       type: new GraphQLNonNull(GraphQLID),
     },
-    teamId: {
+    team: {
       type: new GraphQLNonNull(GraphQLID),
-    }
-  })
+    },
+  }),
 });

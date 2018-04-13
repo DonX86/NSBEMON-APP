@@ -1,12 +1,9 @@
-import { GraphQLSchema } from 'graphql';
+const { GraphQLSchema } = require('graphql');
 
-import { RootQuery } from './rootQuery';
-import { RootMutation } from './rootMutation';
-import { MemberType } from '../member/memberType';
-import { TeamType } from '../team/teamType';
+const { RootQuery } = require('./rootQuery');
+const { RootMutation } = require('./rootMutation');
 
-export const RootSchema = new GraphQLSchema({
-  types: [MemberType, TeamType],
+module.exports.RootSchema = new GraphQLSchema({
   query: RootQuery,
   mutation: RootMutation,
 });

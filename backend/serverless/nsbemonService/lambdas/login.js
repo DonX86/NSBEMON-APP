@@ -1,19 +1,19 @@
-import jwt from 'jsonwebtoken';
-import MemberOperations from '../../../graphql/member/memberOperations';
+const jwt = require('jsonwebtoken');
+const { MemberOperations } = require('../../../graphql/member/memberOperations');
 
 const JWT_EXPIRATION_TIME = '60m';
 const memberOperations = new MemberOperations();
 
-export const handler = async (event, context, callback) => {
+module.exports.handler = async (event, context, callback) => {
   // Extract the username and password
-  const { username, password } = JSON.parse(event.body);
+  const { email, password } = JSON.parse(event.body);
 
   // Authenticate the user in the database with username and password
-  const user = await memberOperations.memberGetByUsernamePassword({ username, password });
+  const user = await memberOperations.memberGetByEmailPassword({ email, password });
 
   let response;
   if (user) {
-    jwt.sign({ user }, process.env.JWT_SECRET, { expiresIn: JWT_EXPIRATION_TIME }, (error, token) => {
+    jwt.sign({ email: user.email }, process.env.JWT_SECRET, { expiresIn: JWT_EXPIRATION_TIME }, (error, token) => {
 
       if (error) {
         response = {

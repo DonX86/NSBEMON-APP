@@ -1,8 +1,8 @@
-import jwt from 'jsonwebtoken';
+const jwt = require('jsonwebtoken');
 
-const buildIAMPolicy = (userId, resourceArn, context) => {
+const buildIAMPolicy = (userEmail, resourceArn, context) => {
   const policy = {
-    principalId: userId,
+    principalId: userEmail,
     policyDocument: {
       Version: '2012-10-17',
       Statement: [
@@ -18,8 +18,7 @@ const buildIAMPolicy = (userId, resourceArn, context) => {
   return policy;
 };
 
-export const handler = (event, context, callback) => {
-
+module.exports.handler = (event, context, callback) => {
   // Get the token provided in the Authorization header
   const token = event.authorizationToken;
 
@@ -30,9 +29,13 @@ export const handler = (event, context, callback) => {
       callback('Unauthorized');
     } else {
       const authorizedContext = {
-        user: JSON.stringify(decoded.user),
+        email: decoded.email,
       };
-      const policyDoc = buildIAMPolicy(decoded.user.id, event.methodArn, authorizedContext);
+      const policyDoc = buildIAMPolicy(
+        decoded.email,
+        event.methodArn,
+        authorizedContext
+      );
       // Authorize the user to use the protected lambda
       callback(null, policyDoc);
     }

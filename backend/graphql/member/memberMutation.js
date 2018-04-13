@@ -1,19 +1,17 @@
-import {
-  GraphQLNonNull,
-} from 'graphql';
-import MemberOperations from './memberOperations';
-import { MemberType } from './memberType';
-import { CreateMemberInput, AssociateMemberTeamInput } from './mutationInput';
+const { GraphQLNonNull } = require('graphql');
+const { MemberOperations } = require('./memberOperations');
+const { MemberType } = require('./memberType');
+const { CreateMemberInput, AssociateMemberTeamInput } = require('./input');
 
 const memberOperations = new MemberOperations();
 
-export const MemberMutation = {
+module.exports.MemberMutation = {
   memberCreate: {
     type: MemberType,
     args: {
-      input: { 
-        type: new  GraphQLNonNull(CreateMemberInput),
-      }
+      input: {
+        type: new GraphQLNonNull(CreateMemberInput),
+      },
     },
     resolve: (source, args) => {
       return memberOperations.memberCreate(args.input);
@@ -24,10 +22,10 @@ export const MemberMutation = {
     args: {
       input: {
         type: new GraphQLNonNull(AssociateMemberTeamInput),
-      }
+      },
     },
     resolve: (source, args, context) => {
       return memberOperations.memberAddToTeam(args.input, context);
-    }
-  }
+    },
+  },
 };

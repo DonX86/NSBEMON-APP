@@ -1,43 +1,49 @@
+import { graphql } from 'react-apollo';
+import gql from 'graphql-tag';
 import React, { Component } from 'react';
-import { Container, Table } from 'reactstrap';
-
-const ListUsers = (props) => {
-  return (
-    props.users.map((user, index) => (
-      <tr key={index}>
-        <th scope="row">{index}</th>
-        <td>{user.firstName}</td>
-        <td>{user.lastName}</td>
-        <td>{user.email}</td>
-        <td>{user.team.name}</td>
-      </tr>
-    ))
-  )
-}
-
-
+import { Container } from 'reactstrap';
+import ListTable from '../../utilities/ListTable';
 
 class CurrentUsers extends Component {
   render() {
+
+    const headers = [
+      {title: "First Name", key: "firstName"}, 
+      {title: "Last Name", key: "lastName"}, 
+      {title: "Username", key: "username"}, 
+      {title: "Team Name", key: "team.name"}
+    ];
+
     return (
       <Container>
-        <Table>
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>First Name</th>
-              <th>Last Name</th>
-              <th>Username</th>
-              <th>Team Name</th>
-            </tr>
-          </thead>
-          <tbody>
-            <ListUsers users={[{id: "1", firstName: "A", lastName: "B", email: "a@g.co", team: { name: "Team1"}}]} />
-          </tbody>
-        </Table>
+        { 
+          !this.props.data.loading ? 
+            <ListTable 
+              headers={headers} 
+              items={this.props.data.memberGetAll}
+            /> : null
+        }
       </Container>
     );
   }
 }
 
-export default CurrentUsers;
+const CurrentUserQuery = gql`
+  query CurrentUserQuery  {
+    memberGetAll {
+      id
+      isLeader
+      username
+      profile {
+        firstName
+        lastName
+        email
+      }
+      team {
+        name
+      }
+    }
+  }
+`;
+
+export default graphql(CurrentUserQuery)(CurrentUsers);

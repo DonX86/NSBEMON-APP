@@ -1,6 +1,10 @@
-import { GraphQLInputObjectType, GraphQLNonNull, GraphQLString } from 'graphql';
+const {
+  GraphQLInputObjectType,
+  GraphQLNonNull,
+  GraphQLString,
+} = require('graphql');
 
-export const CreateTeamInput = new GraphQLInputObjectType({
+module.exports.CreateTeamInput = new GraphQLInputObjectType({
   name: 'CreateTeamInput',
   description: 'The input type for creating a team.',
   fields: () => ({

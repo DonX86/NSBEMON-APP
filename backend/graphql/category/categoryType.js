@@ -1,14 +1,18 @@
-import {
+const {
   GraphQLObjectType,
   GraphQLNonNull,
   GraphQLString,
   GraphQLInt,
-} from 'graphql';
+  GraphQLID,
+} = require('graphql');
 
-export const CategoryType = new GraphQLObjectType({
+module.exports.CategoryType = new GraphQLObjectType({
   name: 'CategoryType',
   description: 'An object representing the points for a category',
   fields: () => ({
+    id: {
+      type: new GraphQLNonNull(GraphQLID),
+    },
     title: {
       type: new GraphQLNonNull(GraphQLString),
     },
