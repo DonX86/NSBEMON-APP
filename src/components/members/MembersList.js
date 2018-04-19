@@ -5,7 +5,7 @@ import MemberItem from './MemberItem';
 
 const MembersList = (props) => {
   return props.members.map(member => (
-    <Container key={'member_' + member.id} >
+    <Container key={'member_' + member.email} >
       <Row>
         <Col>
           <MemberItem member={member} />

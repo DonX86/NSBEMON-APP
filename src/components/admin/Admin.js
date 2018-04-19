@@ -9,13 +9,13 @@ class Admin extends React.Component {
 
   render() {
     // Gather the props from the apollo call
-    const { data: { loading, error, admin }} = this.props;
+    const { data: { loading, error, viewer }} = this.props;
 
     return (
       <Load
         loading={loading}
         error={error}
-        onLoad={<AdminView admin={admin} />}
+        onLoad={() => <AdminView admin={viewer} />}
       />
     );
   }
@@ -25,7 +25,7 @@ class Admin extends React.Component {
 const AdminQuery = gql`
   query AdminQuery {
     viewer {
-      id
+      email
     }
   }
 `;

@@ -2,7 +2,7 @@ import React from 'react';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 
-import Load from '../utilities/Load.js';
+import Load from '../utilities/Load';
 import ProfileView from './ProfileView';
 
 class ProfileComponent extends React.Component {
@@ -15,7 +15,7 @@ class ProfileComponent extends React.Component {
       <Load
         loading={loading}
         error={error}
-        onLoad={<ProfileView viewer={viewer} />}
+        onLoad={() => <ProfileView viewer={viewer} />}
       />
     );
   }
@@ -25,17 +25,14 @@ class ProfileComponent extends React.Component {
 const ProfileComponentQuery = gql`
   query ProfileComponentQuery {
     viewer {
-      id
+      firstName
+      lastName
       trainings {
         approved
         category {
           title
           points
         }
-      }
-      profile {
-        firstName
-        lastName
       }
     }
   }

@@ -14,7 +14,7 @@ import { calculatePoints } from '../utilities/calculatePoints';
 
 const MemberItem = (props) => {
 
-  const points = calculatePoints(props.member.profile.trainings);
+  const points = calculatePoints(props.member.trainings);
   const progress = points % 10;
   const level = Math.floor(points / 10);
 
@@ -29,7 +29,7 @@ const MemberItem = (props) => {
             <ListGroupItem active>
               <ListGroupItemHeading>Name</ListGroupItemHeading>
               <ListGroupItemText>
-                {props.member.profile.firstName} {props.member.profile.lastName}
+                {props.member.firstName} {props.member.lastName}
               </ListGroupItemText>
             </ListGroupItem>
             <ListGroupItem>

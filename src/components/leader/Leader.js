@@ -15,7 +15,7 @@ class Leader extends React.Component {
       <Load
         loading={loading}
         error={error}
-        onLoad={<LeaderView viewer={viewer} />}
+        onLoad={() => <LeaderView viewer={viewer} />}
       />
     );
   }
@@ -31,9 +31,6 @@ const LeaderQuery = gql`
       team {
         name
         leaders {
-          email
-          isAdmin
-          isLeader
           firstName
           lastName
         }

@@ -15,7 +15,7 @@ class Teams extends React.Component {
       <Load
         loading={loading}
         error={error}
-        onLoad={<TeamsView teams={teamGetAll} />}
+        onLoad={() => <TeamsView teams={teamGetAll} />}
       />
     );
   }
@@ -25,13 +25,10 @@ class Teams extends React.Component {
 const TeamsQuery = gql`
   query TeamsQuery {
     teamGetAll {
-      id
       name
-      leader {
-        profile {
-          firstName
-          lastName
-        }
+      leaders {
+        firstName
+        lastName
       }
       members {
         trainings {

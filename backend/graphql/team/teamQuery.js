@@ -1,14 +1,14 @@
 const { GraphQLList } = require('graphql');
-
+const { TeamOperations } = require('./teamOperations');
 const { TeamType } = require('./teamType');
+
+const teamOperations = new TeamOperations();
 
 module.exports.TeamQuery = {
   teamGetAll: {
     type: new GraphQLList(TeamType),
     resolve: async () => {
-      // Get teams from S3
-
-      return null;
+      return teamOperations.teamGetAll();
     },
   },
 };

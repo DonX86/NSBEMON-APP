@@ -6,10 +6,14 @@ export default class AddCategory extends React.Component{
     return(
       <Form>
         <FormGroup>
-          <Label for="addCategory">Email</Label>
-          <Input type="email" name="email" id="exampleEmail" placeholder="with a placeholder" />
-          <Button>Submit</Button>
+          <Label for="categoryTitle">Title</Label>
+          <Input type="text" id="categoryTitle" placeholder="A title for the category..." />
         </FormGroup>
+        <FormGroup>
+          <Label for="categoryPoints">Points</Label>
+          <Input type="number" min="1" max="100" id="categoryPoints" placeholder="A point value for the category..." />
+        </FormGroup>
+        <Button>Submit</Button>
       </Form>  
     );
   }

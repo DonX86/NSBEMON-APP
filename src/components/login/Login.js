@@ -83,6 +83,7 @@ class Login extends React.Component {
       // Password was invalid... maybe show invalid message
       this.setState({
         error: err,
+        authenticated: false,
       });
     });
   }

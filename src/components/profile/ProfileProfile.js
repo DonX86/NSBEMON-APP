@@ -25,13 +25,13 @@ const ProfileProfile = (props) => {
         <ListGroupItem>
           <ListGroupItemHeading>First Name</ListGroupItemHeading>
           <ListGroupItemText>
-            { props.viewer.profile.firstName }
+            { props.viewer.firstName }
           </ListGroupItemText>
         </ListGroupItem>
         <ListGroupItem>
           <ListGroupItemHeading>Last Name</ListGroupItemHeading>
           <ListGroupItemText>
-            { props.viewer.profile.lastName }
+            { props.viewer.lastName }
           </ListGroupItemText>
         </ListGroupItem>
         <ListGroupItem>

@@ -19,9 +19,9 @@ class Load extends React.Component {
         </Alert>
       );
     } else {
-      return onLoad;
+      return onLoad();
     }
   }
-};
+}
 
 export default Load;

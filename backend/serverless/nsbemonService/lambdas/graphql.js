@@ -1,8 +1,8 @@
 const { graphqlLambda } = require('apollo-server-lambda');
-const middy = require('middy');
-const { parseMultipart } = require('../middleware/parseMultipart');
+// const middy = require('middy');
+// const { parseMultipart } = require('../middleware/parseMultipart');
 
-const RootSchema = require('../../../graphql/root/rootSchema');
+const { RootSchema } = require('../../../graphql/root/rootSchema');
 
 const graphqlHandler = (event, context, callback) => {
 
@@ -25,5 +25,6 @@ const graphqlHandler = (event, context, callback) => {
   return newHandler(event, context, callbackFilter);
 };
 
-module.exports.handler = middy(graphqlHandler)
-  .use(parseMultipart());
+module.exports.handler = graphqlHandler;
+  // middy(graphqlHandler)
+  // .use(parseMultipart());

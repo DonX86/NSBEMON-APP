@@ -15,27 +15,29 @@ class Members extends React.Component {
       <Load
         loading={loading}
         error={error}
-        onLoad={<MembersView viewer={viewer} />}
+        onLoad={() => <MembersView team={viewer.team} />}
       />
     );
   }
-};
+}
 
 // Attach the data from the server
 const MembersQuery = gql`
   query MembersQuery {
     viewer {
-      id
       team {
         members {
-          id
-          profile {
-            firstName
-            lastName
+          email
+          firstName
+          lastName
+          trainings {
+            category {
+              points
+            }
           }
         }
       }
     }
   }
-`
+`;
 export default graphql(MembersQuery)(Members);

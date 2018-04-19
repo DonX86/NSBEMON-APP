@@ -16,8 +16,8 @@ import Train from './profile/train/Train';
 import { authenticationClient } from '../authentication/Authentication';
 
 const loggedInRoutes = [
-  { name: 'Leader', render: 'leader'},
-  { name: 'LeaderBoard', render: 'leaderBoard'},
+  { name: 'Leaders', render: 'leader'},
+  { name: 'Leader Board', render: 'leaderBoard'},
   { name: 'Teammates' , render: 'teammates'},
   { name: 'Profile', render: 'profile'},
   { name: 'Teams', render: 'teams'},

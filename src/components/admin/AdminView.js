@@ -8,10 +8,7 @@ import {
   TabPane,
 } from 'reactstrap';
 
-import AddUser from './adminComponents/AddUser';
 import CurrentUsers from './adminComponents/CurrentUsers';
-import DeleteUser from './adminComponents/DeleteUser';
-import AddTeam from './adminComponents/AddTeam';
 import AddCategory from './adminComponents/AddCategory';
 
 class AdminView extends React.Component {
@@ -30,12 +27,9 @@ class AdminView extends React.Component {
 
   render() {
 
-    const labels = ['Users', 'Add a User', 'Delete a User', 'Add a Team', 'Add a Category'];
+    const labels = ['Users', 'Add a Category'];
     const components = [
       <CurrentUsers key={'currentUsersComponent'} />, 
-      <AddUser key={'addUserComponent'} />,
-      <DeleteUser key={'deleteUserComponent'} />,
-      <AddTeam key={'addTeamComponent'} />,
       <AddCategory key={'addCategoryComponent'} />
     ];
 
@@ -56,7 +50,7 @@ class AdminView extends React.Component {
               </NavItem>
             ))
           }
-        </Nav>
+        </Nav><br />
         <TabContent activeTab={this.state.activeTab}>
           {
             components.map((item, index) => (

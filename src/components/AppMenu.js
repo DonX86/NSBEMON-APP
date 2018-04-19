@@ -7,13 +7,7 @@ import {
     NavbarBrand,
     Nav,
     NavItem,
-    NavLink,
-    Row,
-    Col,
-    Button,
 } from 'reactstrap';
-
-import Logout from './login/Logout';
 
 const AppRoute = (props) => {
   return (

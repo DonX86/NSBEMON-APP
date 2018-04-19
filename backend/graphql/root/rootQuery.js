@@ -1,5 +1,5 @@
+const { TeamQuery } = require('../team/teamQuery');
 const { GraphQLObjectType } = require('graphql');
-
 const { MemberType } = require('../member/memberType');
 const { MemberQuery } = require('../member/memberQuery');
 const { MemberModel } = require('../../dynamodb/models/memberModel');
@@ -9,6 +9,7 @@ module.exports.RootQuery = new GraphQLObjectType({
   description: 'The root query',
   fields: () => ({
     ...MemberQuery,
+    ...TeamQuery,
     viewer: {
       type: MemberType,
       resolve: async (source, args, context) => {

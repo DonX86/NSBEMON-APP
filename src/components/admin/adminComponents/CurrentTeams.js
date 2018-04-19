@@ -17,7 +17,6 @@ class CurrentTeams extends Component {
 const CurrentTeamsQuery = gql`
   query CurrentTeamsQuery  {
     teamGetAll {
-      id
       title
     }
   }

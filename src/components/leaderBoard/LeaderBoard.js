@@ -15,11 +15,11 @@ class LeaderBaord extends React.Component {
       <Load
         loading={loading}
         error={error}
-        onLoad={<MembersView viewer={viewer} />}
+        onLoad={() => <MembersView viewer={viewer} />}
       />
     );
   }
-};
+}
 
 // Attach the data from the server
 const MembersQuery = gql`
@@ -40,5 +40,6 @@ const MembersQuery = gql`
       }
     }
   }
-`
+`;
+
 export default graphql(MembersQuery)(LeaderBaord);
