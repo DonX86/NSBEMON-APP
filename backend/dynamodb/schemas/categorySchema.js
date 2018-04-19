@@ -2,12 +2,9 @@ const { db } = require('../configure');
 
 module.exports.CategorySchema = new db.Schema(
   {
-    id: {
-      type: String,
-      hashKey: true,
-    },
     title: {
       type: String,
+      hashKey: true,
     },
     points: {
       type: Number,

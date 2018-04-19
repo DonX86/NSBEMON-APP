@@ -1,3 +1,5 @@
+const { CategoryQuery } = require('../category/categoryQuery');
+
 const { TeamQuery } = require('../team/teamQuery');
 const { GraphQLObjectType } = require('graphql');
 const { MemberType } = require('../member/memberType');
@@ -8,6 +10,7 @@ module.exports.RootQuery = new GraphQLObjectType({
   name: 'RootQuery',
   description: 'The root query',
   fields: () => ({
+    ...CategoryQuery,
     ...MemberQuery,
     ...TeamQuery,
     viewer: {

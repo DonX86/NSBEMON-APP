@@ -9,7 +9,7 @@ import {
 } from 'reactstrap';
 
 import CurrentUsers from './adminComponents/CurrentUsers';
-import AddCategory from './adminComponents/AddCategory';
+import CurrentCategories from './adminComponents/CurrentCategories';
 
 class AdminView extends React.Component {
   constructor() {
@@ -27,10 +27,10 @@ class AdminView extends React.Component {
 
   render() {
 
-    const labels = ['Users', 'Add a Category'];
+    const labels = ['Users', 'Categories'];
     const components = [
       <CurrentUsers key={'currentUsersComponent'} />, 
-      <AddCategory key={'addCategoryComponent'} />
+      <CurrentCategories key={'addCategoryComponent'} />
     ];
 
     return (
