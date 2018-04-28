@@ -30,7 +30,7 @@ class AdminView extends React.Component {
     const labels = ['Users', 'Categories'];
     const components = [
       <CurrentUsers key={'currentUsersComponent'} />, 
-      <CurrentCategories key={'addCategoryComponent'} />
+      <CurrentCategories key={'currentCategoriesComponent'} />
     ];
 
     return (

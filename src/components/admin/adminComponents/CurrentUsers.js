@@ -14,7 +14,7 @@ class CurrentUsers extends Component {
       _.set(newMember, 'firstName', <Input type="text" defaultValue={member.firstName} />);
       _.set(newMember, 'lastName', <Input type="text" defaultValue={member.lastName} />);
       _.set(newMember, 'email', <Input type="email" readOnly defaultValue={member.email} />);
-      _.set(newMember, 'team', {name: <Input type="text" defaultValue={'hello'} />});
+      _.set(newMember, 'team', {name: <Input type="text" defaultValue={member.team.name} />});
       newMember.button =  <Button className="btn btn-danger">Delete</Button>;
       return newMember;
     });

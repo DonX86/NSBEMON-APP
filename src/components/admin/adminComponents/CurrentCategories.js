@@ -1,6 +1,6 @@
 import React from 'react';
 import gql from 'graphql-tag';
-import { graphql } from 'graphql';
+import { graphql } from 'react-apollo';
 import { Button, Input, Container} from 'reactstrap';
 import Load from '../../utilities/Load';
 import _ from 'lodash';
@@ -12,7 +12,7 @@ class CurrentCategories extends React.Component {
     const inputCategories = categories.map((category) => {
       const newCategory = {...category};
       _.set(newCategory, 'title', <Input type="text" defaultValue={category.title} />);
-      _.set(newCategory, 'points', <Input type="number" defaultValue={category.points} />);
+      _.set(newCategory, 'points', <Input type="number" defaultValue={category.points} min="1" max="100" />);
       newCategory.button =  <Button className="btn btn-danger">Delete</Button>;
       return newCategory;
     });
@@ -53,7 +53,7 @@ class CurrentCategories extends React.Component {
 }
 
 const CurrentCategoriesQuery = gql`
-  query CurrentUserQuery {
+  query CurrentCategoriesQuery {
     categoryGetAll {
       title
       points
